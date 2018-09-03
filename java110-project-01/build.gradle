@@ -20,5 +20,5 @@ dependencies {
 }
 
 repositories {
-    mavenCentral() //서버 다운을 가리키는것
+    mavenCentral() //서버 다운속도를 올려줌
 }
