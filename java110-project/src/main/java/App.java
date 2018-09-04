@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class App {
 public static void main(String[] args) {
         
@@ -7,6 +8,8 @@ public static void main(String[] args) {
         Scanner keyIn=new Scanner(System.in);
         
         // 2) 사용자로부터 회원 정보 입력 받기
+        while(true)
+        {
         System.out.print("이름 : ");
         String name = keyIn.nextLine();
         
@@ -17,5 +20,13 @@ public static void main(String[] args) {
         String password = keyIn.nextLine();
         
         System.out.printf("%s, %s ,%s \n",name,email,password);
-}
+        
+        System.out.print("계속 할거임 ? (Y/n)");
+        String yn=keyIn.nextLine();
+        
+        if(yn.toLowerCase().equals("n"))
+            break;
+        }
+        
+    }
 }
