@@ -4,29 +4,39 @@ import java.util.Scanner;
 public class App {
 public static void main(String[] args) {
         
+        String[] names=new String[100];
+        String[] emails=new String[100];
+        String[] passwords=new String[100];
+        
+        int index=0;
         // 1) 키보드 입력을 처리 할 객체 준비
         Scanner keyIn=new Scanner(System.in);
         
         // 2) 사용자로부터 회원 정보 입력 받기
+        
+        
         while(true)
         {
         System.out.print("이름 : ");
-        String name = keyIn.nextLine();
+        names[index] = keyIn.nextLine();
         
         System.out.print("이메일 : ");
-        String email = keyIn.nextLine();
+        emails[index] = keyIn.nextLine();
         
         System.out.print("암호 : ");
-        String password = keyIn.nextLine();
-        
-        System.out.printf("%s, %s ,%s \n",name,email,password);
+        passwords[index] = keyIn.nextLine();
         
         System.out.print("계속 할거임 ? (Y/n)");
         String yn=keyIn.nextLine();
         
+        index ++;
         if(yn.toLowerCase().equals("n"))
             break;
         }
-        
+        for(int i=0; i<index; i++)
+        {
+        System.out.printf("%s, %s ,%s \n",names[i],emails[i],passwords[i]);
+        }
+        keyIn.close();
     }
 }
