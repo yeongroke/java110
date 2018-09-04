@@ -2,18 +2,22 @@ import java.util.Scanner;
 
 
 public class App {
-public static void main(String[] args) {
-        
-        String[] names=new String[100];
-        String[] emails=new String[100];
-        String[] passwords=new String[100];
-        
-        int index=0;
-        // 1) 키보드 입력을 처리 할 객체 준비
-        Scanner keyIn=new Scanner(System.in);
-        
-        // 2) 사용자로부터 회원 정보 입력 받기
-        
+    static String[] names=new String[100];
+    static String[] emails=new String[100];
+    static String[] passwords=new String[100];
+    
+    static int index=0;
+    // 1) 키보드 입력을 처리 할 객체 준비
+    static Scanner keyIn=new Scanner(System.in);
+    
+    static void printMembers() {
+        for(int i=0; i<index; i++)
+        {
+        System.out.printf("%s, %s ,%s \n",names[i],emails[i],passwords[i]);
+        }
+    }
+    static void inputMembers() {
+// 2) 사용자로부터 회원 정보 입력 받기
         
         while(true)
         {
@@ -33,10 +37,13 @@ public static void main(String[] args) {
         if(yn.toLowerCase().equals("n"))
             break;
         }
-        for(int i=0; i<index; i++)
-        {
-        System.out.printf("%s, %s ,%s \n",names[i],emails[i],passwords[i]);
-        }
+    }
+    
+public static void main(String[] args) {
+        
+        inputMembers();
+        printMembers();
         keyIn.close();
     }
+     
 }
