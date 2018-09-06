@@ -3,11 +3,11 @@ package bitcamp.java110.cms.control;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Manager;
-import bitcamp.java110.cms.util.ArrayList;
+import bitcamp.java110.cms.util.LinkedList;
 
 public class ManagerController {
 
-    private ArrayList<Manager> managers = new ArrayList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
+    private LinkedList<Manager> managers = new LinkedList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
     public Scanner keyIn;
     
     public ManagerController(Scanner keyIn) {

@@ -19,3 +19,22 @@
 
 ## java110-project(tag v0.4)
 - 클래스활용
+
+## java110-project (tag: v0.5)
+
+- 조건문, 반복문, 메서드 활용
+
+## java110-project (tag: v0.6)
+
+- 패키지 활용 및 클래스의 접근 범위
+
+## java110-project (tag: v0.7)
+
+- 목록 다루기
+
+## java110-project (tag: v0.8)
+
+- 목록을 다루는 클래스를 리팩토링하기
+- 다형적 변수를 사용하여 student,manager,teacher객체를
+  모두 저장할 수 있다.
+- 
