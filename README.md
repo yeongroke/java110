@@ -47,6 +47,16 @@
 ## java110-project (tag: v0.9.1)
 
 - LinkedList 생성 , add()/get() 구현 
+
 ## java110-project (tag: v1.0)
 
 - Linkeclist 생성
+
+## java110-project (tag: v1.1)
+
+- 인터페이스 적용
+- 데이터 목록을 다룰 때 호출하는 메서드의 규칙을 정의한다.
+    - 다양한 방법으로 구현한 객체를 사용할 수 있다.
+    - 즉 규칙을 따르기만 한다면 어떤 객체라도 대체할 수 있다.
+- 인터페이스의 default
+- 의존 객체 주입
