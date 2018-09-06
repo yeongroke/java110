@@ -35,6 +35,15 @@
 ## java110-project (tag: v0.8)
 
 - 목록을 다루는 클래스를 리팩토링하기
-- 다형적 변수를 사용하여 student,manager,teacher객체를
-  모두 저장할 수 있다.
-- 
+- 다형적 변수를 사용하여 활용법
+- 클래스 멤버(변수,메서드,블록)와 인스턴스 멤버의 차이점
+- 생성자 사용
+
+## java110-project (tag: v0.9)
+
+- 제네릭 활용법
+- arraylist에 제네릭 적용하기
+
+## java110-project (tag: v0.9.1)
+
+- LinkedList 생성 , add()/get() 구현 '
