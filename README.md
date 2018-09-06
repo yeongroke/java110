@@ -46,4 +46,7 @@
 
 ## java110-project (tag: v0.9.1)
 
-- LinkedList 생성 , add()/get() 구현 '
+- LinkedList 생성 , add()/get() 구현 
+## java110-project (tag: v1.0)
+
+- Linkeclist 생성
