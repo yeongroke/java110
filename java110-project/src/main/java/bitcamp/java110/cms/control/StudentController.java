@@ -7,7 +7,7 @@ import bitcamp.java110.cms.util.ArrayList;
 
 public class StudentController {
 
-    private ArrayList students = new ArrayList();
+    private ArrayList<Student> students = new ArrayList<>(); //jdk버전마다 <>여기에 생략할수도 있다 jdk7버전은 생략 안된다 Student써줘야됨
     public Scanner keyIn;
     
     public StudentController(Scanner keyIn) {

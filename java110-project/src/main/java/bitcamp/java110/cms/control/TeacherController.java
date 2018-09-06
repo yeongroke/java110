@@ -7,7 +7,7 @@ import bitcamp.java110.cms.util.ArrayList;
 
 public class TeacherController {
     
-    private ArrayList teachers = new ArrayList();
+    private ArrayList<Teacher> teachers = new ArrayList<>();
     public Scanner keyIn;
     
     public TeacherController(Scanner keyIn) {

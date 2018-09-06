@@ -7,7 +7,7 @@ import bitcamp.java110.cms.util.ArrayList;
 
 public class ManagerController {
 
-    private ArrayList managers = new ArrayList();
+    private ArrayList<Manager> managers = new ArrayList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
     public Scanner keyIn;
     
     public ManagerController(Scanner keyIn) {
