@@ -1,81 +1,72 @@
 import java.util.Scanner;
 
+import bitcamp.java110.cms.control.ManagerController;
+import bitcamp.java110.cms.control.StudentController;
+import bitcamp.java110.cms.control.TeacherController;
+
 public class App {
-    //여러  속성의 값을 관리하기 쉽도록 사용자 정의 데이터 타입을 만들어 사용했다.
-    static class Member {
-        protected String name;
-        protected String email;
-        protected String password;
-        
-        // 인스턴스의 메모리를 다루는 operator=setter/getter/accessor=property=message
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String getEmail() {
-            return email;
-        }
-        public void setEmail(String email) {
-            this.email = email;
-        }
-        public String getPassword() {
-            return password;
-        }
-        public void setPassword(String password) {
-            this.password = password;
-        }
-        
-    }
     
-    static Member[] members=new Member[100];
-    
-    static int index=0;
-    // 1) 키보드 입력을 처리 할 객체 준비
-    static Scanner keyIn=new Scanner(System.in);
-    
-    static void printMembers() {
-        for(int i=0; i<index; i++)
-        {
-        System.out.printf("%s, %s ,%s \n",members[i].getName(),members[i].getEmail()
-                            ,members[i].getPassword());
+    static Scanner keyIn = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        
+        StudentController sc = new StudentController(keyIn);
+        TeacherController tc = new TeacherController(keyIn);
+        ManagerController mc = new ManagerController(keyIn);
+        
+        while (true) {
+            String menu = promptMenu();
+            
+            if (menu.equals("1")) {
+                sc.serviceStudentMenu();
+                
+            } else if (menu.equals("2")) {
+                tc.serviceTeacherMenu();
+                
+            } else if (menu.equals("3")) {
+                mc.serviceManagerMenu();
+                
+            } else if (menu.equals("0")){
+                System.out.println("안녕히 가세요!");
+                break;
+            }
         }
-    }
-    static void inputMembers() {
-// 2) 사용자로부터 회원 정보 입력 받기
-        
-        while(true)
-        {
-        Member m=new Member();
-        
-        System.out.print("이름 : ");
-        m.setName(keyIn.nextLine());
-        
-        System.out.print("이메일 : ");
-        m.setEmail(keyIn.nextLine());
-        
-        System.out.print("암호 : ");
-        m.setPassword(keyIn.nextLine());
-        
-        System.out.print("계속 할거임 ? (Y/n)");
-        String yn=keyIn.nextLine();
-        
-        members[index++]=m; //안에 ++을안써주면 index ++을 밖에 써주어야됨
-        
-        
-        if(yn.toLowerCase().equals("n"))
-            break;
-        }
-    }
-    
-public static void main(String[] args) {
-        
-        inputMembers();
-        
-        printMembers();
         
         keyIn.close();
     }
-     
+
+    private static String promptMenu() {
+        System.out.println("[메뉴]");
+        System.out.println("1.학생 관리");
+        System.out.println("2.강사 관리");
+        System.out.println("3.매니저 관리");
+        System.out.println("0.종료");
+        
+        while (true) {
+            System.out.print("메뉴 번호> ");
+            
+            String menu = keyIn.nextLine();
+            
+            switch (menu) {
+            case "1":
+            case "2":
+            case "3":
+            case "0":
+                return menu;
+            default:
+                System.out.println("메뉴 번호가 유효하지 않습니다.");
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
