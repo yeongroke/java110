@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.control.ManagerController;
 import bitcamp.java110.cms.control.StudentController;
 import bitcamp.java110.cms.control.TeacherController;
@@ -16,15 +17,11 @@ public class App {
     
     static Scanner keyIn = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         
-        HashMap<String, controller> requestHandlerMapping=new HashMap<>(); 
-        //hashmap준 이유는 값이 value값인지 체크하려고
-        
-        requestHandlerMapping.put("1", new StudentController(new LinkedList<Student>()));
-        requestHandlerMapping.put("2", new TeacherController(new ArrayList<Teacher>()));
-        requestHandlerMapping.put("3", new ManagerController(new ArrayList<Manager>()));
-        
+        ApplicationContext iocContainer = new ApplicationContext("bitcamp.java110.cms.control");
+        //bitcamp.java110.cms.control여기있는 클래스만 찾아서 만들어 달라는 선언
+        //그러면 알아서 저 control에 있는 클라스,패키지를 찾아서 간다
         while (true) {
             String menu = promptMenu();
             
@@ -32,7 +29,7 @@ public class App {
                 System.out.println("안녕히 가세요!");
                 break;
             }
-            controller controller =requestHandlerMapping.get(menu);
+            controller controller =(controller)iocContainer.getBean(menu);
             
             if (controller !=null) {
                 controller.service(keyIn);

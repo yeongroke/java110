@@ -14,11 +14,17 @@ plugins {
 
 mainClassName = 'App'
 
-dependencies {
+dependencies { 
+//프로젝트에서 사용할 라이브러리 등록(설정)하는 공간
+//=> 라이브러리 정보는 mvnrepository.com에서 검색하여 가져온다.
+// https://mvnrepository.com/artifact/org.mybatis/mybatis
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.6'
     compile 'com.google.guava:guava:23.0'
     testCompile 'junit:junit:4.12'
 }
 
 repositories {
-    mavenCentral() //서버 다운속도를 올려줌
+//라이브러리를 다운로드 받는 서버 설정
+    mavenCentral() //http://repo.maven.apache.org/maven2/ 
+    //서버 다운속도를 올려줌
 }
