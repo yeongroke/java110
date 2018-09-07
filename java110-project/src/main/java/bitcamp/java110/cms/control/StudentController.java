@@ -1,9 +1,9 @@
 package bitcamp.java110.cms.control;
 
+import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Student;
-import bitcamp.java110.cms.util.List;
 
 public class StudentController {
 
@@ -136,25 +136,3 @@ public class StudentController {
         students.add(s);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
