@@ -1,17 +1,7 @@
-import java.lang.ModuleLayer.Controller;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Scanner;
-
 import bitcamp.java110.cms.context.ApplicationContext;
-import bitcamp.java110.cms.control.ManagerController;
-import bitcamp.java110.cms.control.StudentController;
-import bitcamp.java110.cms.control.TeacherController;
-import bitcamp.java110.cms.control.controller;
-import bitcamp.java110.cms.domain.Manager;
-import bitcamp.java110.cms.domain.Student;
-import bitcamp.java110.cms.domain.Teacher;
+import bitcamp.java110.cms.control.Controller;
+
 
 public class App {
     
@@ -29,7 +19,7 @@ public class App {
                 System.out.println("안녕히 가세요!");
                 break;
             }
-            controller controller =(controller)iocContainer.getBean(menu);
+            Controller controller =(Controller)iocContainer.getBean(menu);
             
             if (controller !=null) {
                 controller.service(keyIn);
@@ -48,8 +38,11 @@ public class App {
         System.out.println("2.강사 관리");
         System.out.println("3.매니저 관리");
         System.out.println("0.종료");
+        System.out.print("메뉴 번호> ");
+        return keyIn.nextLine();
         
-        while (true) {
+        
+        /*while (true) {
             System.out.print("메뉴 번호> ");
             
             String menu = keyIn.nextLine();
@@ -63,6 +56,6 @@ public class App {
             default:
                 System.out.println("메뉴 번호가 유효하지 않습니다.");
             }
-        }
+        }*/
     }
 }

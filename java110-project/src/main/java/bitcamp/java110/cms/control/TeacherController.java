@@ -1,18 +1,19 @@
 package bitcamp.java110.cms.control;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Teacher;
 
-public class TeacherController implements controller{
+public class TeacherController implements Controller{
+    public String name = "2";
+    private List<Teacher> teachers = new ArrayList<>();
     
-    private List<Teacher> teachers;
-    
-    public TeacherController(List<Teacher> teachers) {
+    /*public TeacherController(List<Teacher> teachers) {
         this.teachers = teachers;
-    }
-    
+    }*/
+    //바로 arraylist를 만들었기 때문에 생성자는 없앤다.
     public void service(Scanner keyIn) { //이때 keyin은 지역변수라고 부른다 =parameter 라고 부릅
         while (true) {
             System.out.print("강사 관리> ");

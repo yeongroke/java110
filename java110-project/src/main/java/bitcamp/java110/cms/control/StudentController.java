@@ -1,18 +1,20 @@
 package bitcamp.java110.cms.control;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Student;
 
-public class StudentController implements controller{
-
-    private List<Student> students; //jdk버전마다 <>여기에 생략할수도 있다 jdk7버전은 생략 안된다 Student써줘야됨
+public class StudentController implements Controller{
+    public String name = "1";
+    private List<Student> students = new ArrayList<>(); //jdk버전마다 <>여기에 생략할수도 있다 jdk7버전은 생략 안된다 Student써줘야됨
     
-    public StudentController(List<Student> students) {
-        this.students=students;
+    public StudentController(/*List<Student> students*/) {
+        //this.students=students;
         init();
     }
+    //바로 arraylist를 썻기때문에 students에대한 생성자를 없앴다.
     
     public void service(Scanner keyIn) {
         while (true) {
