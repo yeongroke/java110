@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.control.manager;
 
-import java.util.List;
 import java.util.Scanner;
 
 import annotation.Component;
@@ -10,12 +9,7 @@ import bitcamp.java110.cms.domain.Manager;
 
 @Component
 public class ManagerAddController {
-    private List<Manager> managers;
-    
-    public void setManagerList(List<Manager> Managers) {
-        this.managers =Managers;
-    }
-    
+   
     @RequestMapping("manager/add")
     public void add(Scanner keyIn) {
         while (true) {
@@ -36,8 +30,11 @@ public class ManagerAddController {
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
             
-            App.managers.add(m);
-            
+            if(App.managerDao.insert(m)>0) {
+                System.out.println("저장하였습니다");
+            } else {
+                System.out.println("같은 이메일의 학생이 존재합니다.");
+            }
             System.out.print("계속 하시겠습니까?(Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n"))

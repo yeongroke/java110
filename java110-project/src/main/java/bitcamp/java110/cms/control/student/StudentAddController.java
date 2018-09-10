@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.control.student;
 
-import java.util.List;
 import java.util.Scanner;
 
 import annotation.Component;
@@ -10,12 +9,6 @@ import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentAddController {
-    private List<Student> studentDao;
-    
-    public void setStudentList(List<Student> studentDao) {
-        this.studentDao =studentDao;
-        init();
-    }
     
     @RequestMapping("student/add")
     public void add(Scanner keyIn) {
@@ -52,7 +45,7 @@ public class StudentAddController {
                 break;
         }
     }
-    public void init() { // 인스턴스 블록
+    { // 인스턴스 블록
         Student s = new Student();
         s.setName("a");
         s.setEmail("a@test.com");

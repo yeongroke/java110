@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.control.teacher;
 
-import java.util.List;
 import java.util.Scanner;
 
 import annotation.Component;
@@ -10,12 +9,7 @@ import bitcamp.java110.cms.domain.Teacher;
 
 @Component
 public class TeacherAddController {
-    private List<Teacher> teachers;
-    
-    public void  setTeacherList(List<Teacher> teachers) {
-        this.teachers =teachers;
-    }
-    
+   
     @RequestMapping("teacher/add")
     public void add(Scanner keyIn) {
         while (true) {
@@ -38,8 +32,12 @@ public class TeacherAddController {
             
             System.out.print("강의과목?(예: 자바,C,C++) ");
             m.setSubjects(keyIn.nextLine());
-            
-            App.teachers.add(m);
+                        
+            if(App.teacherDao.insert(m)>0) {
+                System.out.println("응 추가완료");
+            }else {
+                System.out.println("같은 이메일의 선생이 존재합니다.");
+            }
             
             System.out.print("계속 하시겠습니까?(Y/n) ");
             String answer = keyIn.nextLine();

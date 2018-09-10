@@ -11,16 +11,14 @@ public class TeacherDeleteController {
     
     @RequestMapping("teacher/delete")
     private void delete(Scanner keyIn) {
-        System.out.print("삭제할 번호? ");
-        int no = Integer.parseInt(keyIn.nextLine());
+        System.out.print("삭제할 이메일? ");
+        String email = keyIn.nextLine();
         
-        if (no < 0 || no >= App.teachers.size()) {
-            System.out.println("무효한 번호입니다.");
+        if (App.teacherDao.delete(email)>0) {
+            System.out.println("삭제완료.");
             return;
+        }else {
+            System.out.println("해당 이메일 없음");
         }
-        
-        App.teachers.remove(no);
-        
-        System.out.println("삭제하였습니다.");
     }
 }
