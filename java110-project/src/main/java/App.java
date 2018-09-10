@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 import annotation.RequestMapping;
 import bitcamp.java110.cms.context.ApplicationContext;
+import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
+import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
 
 
 public class App {
@@ -12,8 +14,21 @@ public class App {
     public static void main(String[] args) throws Exception{
 
         ApplicationContext iocContainer = new ApplicationContext("bitcamp.java110.cms.control");
+        
         //bitcamp.java110.cms.control여기있는 클래스만 찾아서 만들어 달라는 선언
         //그러면 알아서 저 control에 있는 클라스,패키지를 찾아서 간다
+        
+        RequestMappingHandlerMapping requestHandlerMap = new RequestMappingHandlerMapping();
+        
+        //=> IoC 컨테이너에 보관된 객체의 이름 목록을 가져온다.
+        String[] names = iocContainer.getBeanDefinitionNames();
+        for(String name : names) {
+            //=> 이름으로 객체를 꺼낸다.
+            Object obj = iocContainer.getBean(name);
+            
+            //=> 객체에서 @RequestMapping이 붙은 메서드를 찾아 저장하라고 명령
+            requestHandlerMap.addMapping(obj);
+        }
         while (true) {
             String menu = prompt();
 
@@ -21,20 +36,16 @@ public class App {
                 System.out.println("안녕히 가세요!");
                 break;
             }
-            Object controller =iocContainer.getBean(menu);
-            if(controller ==null) {
+            RequestMappingHandler mapping = requestHandlerMap.getMapping(menu);
+            if(mapping ==null) {
                 System.out.println("해당 메뉴가 없습니다.");
                 continue;
             }
+            /*Method method = mapping.getMethod();
 
-            Method method = findRequestMapping(controller.getClass());
-            if(method ==null) {
-                System.out.println("해당 메뉴가 없습니다.");
-                continue;
-            }
-
-            method.invoke(controller, keyIn);
-
+            method.invoke(mapping.getInstance(), keyIn);*/
+            mapping.getMethod().invoke(mapping.getInstance(), keyIn);
+            //이렇게 쓰는게 더 효율적
         }
 
         keyIn.close();

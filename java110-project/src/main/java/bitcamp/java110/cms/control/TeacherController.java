@@ -8,7 +8,7 @@ import annotation.Component;
 import annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Teacher;
 
-@Component("teacher")
+@Component
 public class TeacherController {
     private List<Teacher> teachers = new ArrayList<>();
     
@@ -16,7 +16,7 @@ public class TeacherController {
         this.teachers = teachers;
     }*/
     //바로 arraylist를 만들었기 때문에 생성자는 없앤다.
-    @RequestMapping
+    @RequestMapping("teacher")
     public void teacher(Scanner keyIn) { //이때 keyin은 지역변수라고 부른다 =parameter 라고 부릅
         while (true) {
             System.out.print("강사 관리> ");

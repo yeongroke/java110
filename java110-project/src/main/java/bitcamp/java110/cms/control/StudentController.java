@@ -8,7 +8,7 @@ import annotation.Component;
 import annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Student;
 
-@Component("student")
+@Component
 public class StudentController {
     private List<Student> students = new ArrayList<>(); //jdk버전마다 <>여기에 생략할수도 있다 jdk7버전은 생략 안된다 Student써줘야됨
     
@@ -17,7 +17,7 @@ public class StudentController {
         init();
     }
     //바로 arraylist를 썻기때문에 students에대한 생성자를 없앴다.
-    @RequestMapping
+    @RequestMapping("student")
     public void student(Scanner keyIn) {
         while (true) {
             System.out.print("학생 관리> ");

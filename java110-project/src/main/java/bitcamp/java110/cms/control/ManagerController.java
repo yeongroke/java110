@@ -9,7 +9,7 @@ import annotation.Component;
 import annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Manager;
 
-@Component("manager")
+@Component
 public class ManagerController{
     private List<Manager> managers = new ArrayList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
     
@@ -18,7 +18,7 @@ public class ManagerController{
     }*/ // 바로 arraylist로 했기때문에 생성자는 필요없음.
     
     //public ManagerController() {}; 디폴트가 저절로 생성된다.
-    @RequestMapping
+    @RequestMapping("manager")
     public void manager(Scanner keyIn) {
         while (true) {
             System.out.print("매니저 관리> ");

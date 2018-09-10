@@ -6,12 +6,12 @@ import annotation.Component;
 import annotation.RequestMapping;
 
 //일반 주석! !
-@Component("hello")
+@Component
 public class HelloController {
 
     //public String name = "4";  // 위에 애노테이션 주석을 달아서 앲애주어도 된다.
     
-    @RequestMapping
+    @RequestMapping("hello")
     public void hello(Scanner keyIn) {
         System.out.println("안녕하세요!!!");
         
