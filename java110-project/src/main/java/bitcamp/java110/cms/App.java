@@ -1,19 +1,27 @@
+package bitcamp.java110.cms;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import annotation.RequestMapping;
 import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
+import bitcamp.java110.cms.domain.Student;
 
 
 public class App {
 
+    public static List<Student> students = new ArrayList<>();
+    
     static Scanner keyIn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception{
 
         ApplicationContext iocContainer = new ApplicationContext("bitcamp.java110.cms.control");
+        
+        //=> 저장소에 보관된 객체 중에서 
         
         //bitcamp.java110.cms.control여기있는 클래스만 찾아서 만들어 달라는 선언
         //그러면 알아서 저 control에 있는 클라스,패키지를 찾아서 간다
