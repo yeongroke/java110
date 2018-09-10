@@ -8,13 +8,17 @@ import annotation.RequestMapping;
 import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
+import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Student;
+import bitcamp.java110.cms.domain.Teacher;
 
 
 public class App {
 
     public static List<Student> students = new ArrayList<>();
-    
+    public static List<Teacher> teachers = new ArrayList<>();
+    public static List<Manager> managers = new ArrayList<>();
+
     static Scanner keyIn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception{
