@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import annotation.Component;
+import annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Manager;
 
-@Component("3")
-public class ManagerController implements Controller{
+@Component("manager")
+public class ManagerController{
     private List<Manager> managers = new ArrayList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
     
     /*public ManagerController(List<Manager> managers) {
@@ -17,8 +18,8 @@ public class ManagerController implements Controller{
     }*/ // 바로 arraylist로 했기때문에 생성자는 필요없음.
     
     //public ManagerController() {}; 디폴트가 저절로 생성된다.
-    
-    public void service(Scanner keyIn) {
+    @RequestMapping
+    public void manager(Scanner keyIn) {
         while (true) {
             System.out.print("매니저 관리> ");
             String command = keyIn.nextLine();
