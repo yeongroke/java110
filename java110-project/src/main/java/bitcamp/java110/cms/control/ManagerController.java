@@ -1,13 +1,15 @@
 package bitcamp.java110.cms.control;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
+import annotation.Component;
 import bitcamp.java110.cms.domain.Manager;
 
+@Component("3")
 public class ManagerController implements Controller{
-    public String name = "3";
     private List<Manager> managers = new ArrayList<>(); //manager대신 object를 써도된다 ?도 가능 ?는 오브젝트를 나타낸다 
     
     /*public ManagerController(List<Manager> managers) {

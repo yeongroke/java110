@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import annotation.Component;
 import bitcamp.java110.cms.domain.Student;
 
+@Component("1")
 public class StudentController implements Controller{
-    public String name = "1";
     private List<Student> students = new ArrayList<>(); //jdk버전마다 <>여기에 생략할수도 있다 jdk7버전은 생략 안된다 Student써줘야됨
     
     public StudentController(/*List<Student> students*/) {

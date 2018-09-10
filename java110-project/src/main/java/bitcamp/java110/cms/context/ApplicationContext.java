@@ -6,6 +6,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 import org.apache.ibatis.io.Resources;
+
+import annotation.Component;
 public class ApplicationContext {
     HashMap<String, Object> objpool = new HashMap<>();
     
@@ -51,17 +53,23 @@ public class ApplicationContext {
             //getconstructors 는 모든 클라스를 가져오기때문에 s가 안들어간거를 써주어야한다.
             //=> 생성자를 가지고 인스턴스를 생성한다.
             Object instance =constructor.newInstance();
+            
+            //클래스에서 component 애노테이션을 추출한다.
+            Component anno = clazz.getAnnotation(Component.class);
+            //class는 확장자가 아니고 변수명이다 ,class정보를 가지고 있는 객체를 가르킨다. 이변수명의 타입도 Class이다
             //System.out.println(instance.getClass());
             //clazz.newInstance();// 이거는 버전 8까지만 사용가능하다
             
             //=> 이름으로 인스턴스의 필드를 찾는다
-            Field field = clazz.getField("name");
+            //Field field = clazz.getField("name");
             //=> "name" 필드의 값을 꺼낸다.
-            Object name = field.get(instance);
+            //Object name = field.get(instance);
             
-            System.out.println(clazz.getName() + "==>" + name);
+            //System.out.println(clazz.getName() + "==>" + name);
             //=> "name" 필드의 값으로 인스턴스를 objpool에 저장한다.
-            objpool.put((String)name, instance); 
+            
+            // component 애노테이션 value값으로 인스턴스를 objpool에 저장
+            objpool.put(anno.value(), instance); 
             //String인데 오류가 넣어서 string을 넣어서 강제 형변환을해줌 하지만 name이 String이 아니면 강제 형변환 하면안됨
             }catch(Exception e) {
                 System.out.printf("%s 클래스는 기본 생성자가 없습니다.",clazz.getName());
