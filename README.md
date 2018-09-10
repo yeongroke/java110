@@ -77,11 +77,11 @@
 - 미니 IoC 컨네이너 작성
 - File 클래스로 디렉토리 및 파일 다루기
 
-## java110-project (tag: v1.4.2)
+## java110-project (tag: v1.4.1)
 
 - 메서드의 애노테이션 적용
 
-## java110-project (tag: v1.4.1)
+## java110-project (tag: v1.4.2)
 
 - 애노테이션 적용
 
