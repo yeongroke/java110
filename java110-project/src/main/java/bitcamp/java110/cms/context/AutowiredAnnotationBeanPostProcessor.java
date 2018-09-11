@@ -4,18 +4,20 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 
 import annotation.Autowired;
+import annotation.Component;
 
-public class AutowiredAnnotationBeanPostProcessor {
+@Component
+public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor{
 
     ApplicationContext beanContainer;
 
-    public void postProcess(Object bean) {
+    public void postProcess(ApplicationContext beanContainer) {
         //objpool에 보관된 객체 목록을 꺼낸다.
         Collection<Object> objList = beanContainer.objpool.values();
 
         //목록에서 객체를 꺼내 @Autowired가 붙은 메서드를 찾는다.
         for(Object obj : objList) {
-            Method[] methods = bean.getClass().getDeclaredMethods();
+            Method[] methods = obj.getClass().getDeclaredMethods();
 
             for(Method m : methods) {
                 if(!m.isAnnotationPresent(Autowired.class)) continue;

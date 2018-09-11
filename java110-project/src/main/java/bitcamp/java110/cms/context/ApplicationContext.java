@@ -2,7 +2,6 @@ package bitcamp.java110.cms.context;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,7 +10,6 @@ import java.util.Set;
 
 import org.apache.ibatis.io.Resources;
 
-import annotation.Autowired;
 import annotation.Component;
 public class ApplicationContext {
     HashMap<String, Object> objpool = new HashMap<>();
@@ -32,12 +30,16 @@ public class ApplicationContext {
         //로딩된 클래스 목록을 뒤져서 @Component 가  붙은
         //클래스에 대해 인스턴슬르 생성하여 objpool에 보관한다.
         createInstance();
-        
+
         //injectDependency() 메서드를 외부 클래스로 분리한 다음에
         //그 객체를 실행한다.
-        AutowiredAnnotationBeanPostProcessor processor = new AutowiredAnnotationBeanPostProcessor();
-        processor.postProcess(this);
-        
+
+        //객체 생성 후에 실행할 작업이 있다면,
+        //BeanPostProcessor 구현체를 찾아 실행한다.
+        //이름이 달라고 BeanPostProcessor이걸 찾아서 실행한다
+        // 이게 인터페이스랑 annotation이 필요한 이유이다.
+        callBeanPostProcessor();
+
         // 객체 생성 후 작업을 수행하는 클래스가 있다면 찾아서 호출한다.
         //callBeanPostProcessor();
     }
@@ -46,7 +48,7 @@ public class ApplicationContext {
         // objpool에서 주어진 이름의 객체를 찾아 리턴한다.
         return objpool.get(name);
     }
-    
+
     //객체의 타입으로 objpool에 보관된 객체를 찾아 리턴한다.
     public Object getBean(Class<?> type) {
         Collection<Object> objList = objpool.values();
@@ -129,22 +131,19 @@ public class ApplicationContext {
             }
         }
     }
-    private void injectDependency() {
-        
-    }
-    /*private void callBeanPostProcessor() {
+    private void callBeanPostProcessor() {
         Collection<Object> objList = objpool.values();
-        
+
         //=> objpool에 보관된 객체 중에서 BeanPostProcessor 규칙을
         //   준수하는 객체를 찾는다.
         for(Object obj : objList) {
             if(!BeanPostProcessor.class.isInstance(obj)) continue;
-            
+
             BeanPostProcessor processor = (BeanPostProcessor)obj;
             processor.postProcess(this);//이렇게 여러군데에서 참조를 하면 위험하다.
-            
+
         }
-    }*/
+    }
     /*private void postProcessPorObject(BeanPostProcessor processor) {
 
         Set<String> keySet = objpool.keySet();
