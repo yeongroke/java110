@@ -2,14 +2,24 @@ package bitcamp.java110.cms.control.manager;
 
 import java.util.Scanner;
 
+import annotation.Autowired;
 import annotation.Component;
 import annotation.RequestMapping;
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
+//@RequestMapping
 @Component
-public class ManagerAddController {
+public class ManagerAddController {  // --> ManagerDao를 의존한다
    
+    //@RequestMapping //filed에서는 타겟설정안해서 못쓴다
+    ManagerDao managerDao; 
+    //@Component component에서 타겟을 설정해서 여기다 못씀
+    @Autowired
+    public void setManagerDao(ManagerDao managerDao) {
+        this.managerDao=managerDao;
+    }
+    
     @RequestMapping("manager/add")
     public void add(Scanner keyIn) {
         while (true) {
@@ -30,7 +40,7 @@ public class ManagerAddController {
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
             
-            if(App.managerDao.insert(m)>0) {
+            if(managerDao.insert(m)>0) {
                 System.out.println("저장하였습니다");
             } else {
                 System.out.println("같은 이메일의 학생이 존재합니다.");

@@ -2,19 +2,26 @@ package bitcamp.java110.cms.control.student;
 
 import java.util.Scanner;
 
+import annotation.Autowired;
 import annotation.Component;
 import annotation.RequestMapping;
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentDetailController {
   
+    StudentDao studentDao;
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
+    
     @RequestMapping("student/detail")
     public void detail(Scanner keyIn) {
         System.out.print("조회할 학생의 이메일 ");
         String email = keyIn.nextLine();
-        Student student = App.studentDao.findByEmail(email);
+        Student student = studentDao.findByEmail(email);
         
         if (email ==null ) {
             System.out.println("해당이메일이 없습니다.");

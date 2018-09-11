@@ -2,19 +2,26 @@ package bitcamp.java110.cms.control.manager;
 
 import java.util.Scanner;
 
+import annotation.Autowired;
 import annotation.Component;
 import annotation.RequestMapping;
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
 @Component
 public class ManagerDetailController {
     
+    ManagerDao managerDao; 
+    @Autowired
+    public void setManagerDao(ManagerDao managerDao) {
+        this.managerDao=managerDao;
+    }
+    
     @RequestMapping("manager/detail")
     public void detail(Scanner keyIn) {
         System.out.print("조회할 번호? ");
         String email = keyIn.nextLine();
-        Manager manager = App.managerDao.findByEmail(email);
+        Manager manager = managerDao.findByEmail(email);
 
         if (email ==null) {
             System.out.println("무효한 번호입니다.");
