@@ -3,7 +3,6 @@ package bitcamp.java110.cms.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import annotation.Component;
 import bitcamp.java110.cms.domain.Student;
 
 //@Component //주석 하는 순간 객체가 안만들어짐
