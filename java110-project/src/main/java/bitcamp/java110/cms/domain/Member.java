@@ -1,6 +1,10 @@
 package bitcamp.java110.cms.domain;
 
-public class Member {
+import java.io.Serializable;
+
+public class Member implements Serializable{ //Serializable 이걸써쭈었기때문에 문자가 제대로 출력이된다
+
+    private static final long serialVersionUID = 1L;
     protected String name;
     protected String email;
     protected String password;

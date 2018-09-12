@@ -12,7 +12,7 @@ import annotation.Component;
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
-@Component
+//@Component
 public class ManagerFileDao implements ManagerDao {
     private List<Manager> list = new ArrayList<>();
     
