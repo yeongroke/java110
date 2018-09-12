@@ -46,8 +46,14 @@ public class App {
             /*Method method = mapping.getMethod();
 
             method.invoke(mapping.getInstance(), keyIn);*/
+            try {
             mapping.getMethod().invoke(mapping.getInstance(), keyIn);
             //이렇게 쓰는게 더 효율적
+            }catch(Exception e) {
+                System.out.println("실행 오류");
+                System.out.println(e.getCause());
+                //e.getCause은 이유를 발생한이유 출력,file2dao참고
+            }
         }
 
         keyIn.close();
