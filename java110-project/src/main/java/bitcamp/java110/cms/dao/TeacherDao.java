@@ -8,7 +8,7 @@ import bitcamp.java110.cms.domain.Teacher;
 public interface TeacherDao {
     List<Teacher> list = new ArrayList<>();
     
-    int insert(Teacher teacher);
+    int insert(Teacher teacher) throws MandatoryValueDaoException, DuplicationDaoException;
     List<Teacher> findAll();
     Teacher findByEmail(String email);
     int delete(String email);

@@ -5,9 +5,7 @@ import java.util.Scanner;
 import annotation.Autowired;
 import annotation.Component;
 import annotation.RequestMapping;
-import bitcamp.java110.cms.dao.DuplicationDaoException;
 import bitcamp.java110.cms.dao.ManagerDao;
-import bitcamp.java110.cms.dao.MandatoryValueDaoException;
 import bitcamp.java110.cms.domain.Manager;
 
 //@RequestMapping
@@ -46,15 +44,7 @@ public class ManagerAddController {  // --> ManagerDao를 의존한다
             m.setPosition(keyIn.nextLine());
 
             managerDao.insert(m); 
-            // 만약에  상속받은 입섹션클래스중에서 throw을 exception을 받으면 에러가뜬다
-            // runtimeexcetpion을 받아야됨
-            /*try { //여기다가 예외를 발생을 안할거면 여기다가 안적어도됨
-                System.out.println("저장하였습니다");
-            } catch(MandatoryValueDaoException ex ) {
-                System.out.println("필수 값 누락 오류!");
-            } catch(DuplicationDaoException ex) {
-                System.out.println("이메일 중복 오류!");
-            }*/
+           
             System.out.print("계속 하시겠습니까?(Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n"))

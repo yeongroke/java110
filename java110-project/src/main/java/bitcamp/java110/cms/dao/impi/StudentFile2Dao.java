@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import annotation.Component;
+import bitcamp.java110.cms.dao.DuplicationDaoException;
+import bitcamp.java110.cms.dao.MandatoryValueDaoException;
 import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
@@ -32,9 +34,9 @@ public class StudentFile2Dao implements StudentDao {
             // try ( ) 가로 안에 선언할 수 있는 것들은 close을 쓸수있는것만 가능하다
             // 안에 써주면 finally에서 close을 해줄필요도 없이 자동으로 close가 된다.
             list = (List<Student>)in2.readObject();
-           /* while (true) {
-                
-                
+            /* while (true) {
+
+
                 //list.add(s);
             }*/
         }catch(Exception e) {
@@ -44,7 +46,7 @@ public class StudentFile2Dao implements StudentDao {
     public StudentFile2Dao() {
         this(defaultFilename);
     }
-    
+
     private void save() {
         File dataFile = new File(filename);
 
@@ -56,7 +58,7 @@ public class StudentFile2Dao implements StudentDao {
             // try ( ) 가로 안에 선언할 수 있는 것들은 close을 쓸수있는것만 가능하다
             // 안에 써주면 finally에서 close을 해줄필요도 없이 자동으로 close가 된다.
             out.writeObject(list);
-           /* for(Manager m : list) {
+            /* for(Manager m : list) {
                 out.writeObject(m);
             }*/
             out.flush(); //buffer에 있는 정보를 하나씩 출력하는거(밀어내는 것)
@@ -65,21 +67,28 @@ public class StudentFile2Dao implements StudentDao {
         }
     }
 
-    public int insert(Student student) {
+    public int insert(Student student) throws MandatoryValueDaoException, DuplicationDaoException {
+        if(     student.getName().length() == 0 ||
+                student.getEmail().length() == 0 ||
+                student.getPassword().length() == 0) {
+
+            throw new MandatoryValueDaoException("필수 입력 항목이 비었음");
+        }
+
         for(Student item : list) {
             if(item.getEmail().equals(student.getEmail())) {
-                return 0;
+                throw new DuplicationDaoException("같은 이메일이 이미 등록됫엄");
             }
         }
         list.add(student);
         save();
         return 1; 
     }
-    
+
     public List<Student> findAll() {
         return list;
     }
-    
+
     public Student findByEmail(String email) {
         for(Student item : list) {
             if(item.getEmail().equals(email)) {
@@ -88,7 +97,7 @@ public class StudentFile2Dao implements StudentDao {
         }
         return null;
     }
-    
+
     public int delete(String email) {
         for(Student item : list) {
             if(item.getEmail().equals(email)) {
