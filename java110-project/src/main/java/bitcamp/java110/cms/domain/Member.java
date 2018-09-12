@@ -7,7 +7,8 @@ public class Member implements Serializable{ //Serializable 이걸써쭈었기�
     private static final long serialVersionUID = 1L;
     protected String name;
     protected String email;
-    protected String password;
+    //transient 필드 = Serialize(직렬화=바이트 배열화) : 대상에서 제외한다
+    protected transient String password;
     
     public String getName() {
         return name;
