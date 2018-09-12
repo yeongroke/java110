@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Retention(value=RetentionPolicy.RUNTIME) //컴파일 한 후 .class 파일에 남겨 둔다. 위에 설명
            //value=RetentionPolicy.CLASS 이거인경우 value을 생략 가능 하지만 value가 두개거나 value2인 경우는 안됨
 public @interface Component{
-    String value() default "";
+    String value() default ""; //디폴트 값을 안써주면 기본값에 값을 다 넣어주어야하기때문에 이걸 선언을 해주어야한다.
     //String value(); 은 property 이다 , 일반 메서드는 동사이지만 property는 동사가 아님
     
     

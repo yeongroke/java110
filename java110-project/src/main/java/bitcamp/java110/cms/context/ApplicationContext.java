@@ -11,6 +11,8 @@ import java.util.Set;
 import org.apache.ibatis.io.Resources;
 
 import annotation.Component;
+
+//객체를 생성해서 받아줄려고 쓰는것 
 public class ApplicationContext {
     HashMap<String, Object> objpool = new HashMap<>();
     List<Class<?>> classes = new ArrayList<>();
@@ -71,9 +73,10 @@ public class ApplicationContext {
         //System.out.println(packagePath); //디렉토리 출력
         File[] files = path.listFiles();
         for(File file : files) {
-            if(file.isDirectory()) {
+            if(file.isDirectory()) {//디렉토리 인경우가
                 findClass(file,packagePath + "/" + file.getName()); //파일이름만 출력
-            }else {
+                //디렉토리인경우에는 findclass로 가서 다시 파일인것만 찾아서 가는거이다
+            }else { // else는 디렉토리가 아닌 경우 즉 파일인경우 실행되게 하는것이다 
                 String className =(packagePath + "/" + file.getName())
                         .replace("/", ".")
                         .replace(".class", "");

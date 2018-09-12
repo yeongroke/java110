@@ -12,5 +12,4 @@ public interface ManagerDao {
     List<Manager> findAll();
     Manager findByEmail(String email);
     int delete(String email);
-
 }

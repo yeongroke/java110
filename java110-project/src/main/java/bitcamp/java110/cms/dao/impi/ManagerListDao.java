@@ -1,8 +1,9 @@
-package bitcamp.java110.cms.dao;
+package bitcamp.java110.cms.dao.impi;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
 //@Component
