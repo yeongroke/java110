@@ -170,3 +170,17 @@
 
 - DB 커넥션 공유하기
 - impl폴더를 각 mysql 하나씩 정리
+- DB 연결 객체를 재사용하며 가비지를 줄이고, 실행 속도를 높이기 위함
+
+## java110-project (tag: v2.5)
+
+- Spring IoC 컨네이너 도입
+- 기존에 만들었떤 ApplicationContext 대신에 Spring 프레임워크에서
+제공하는 ApplicationContext 사용하기
+- 작업
+    - Spring IoC 컨테이너 라이브러리 추가(build.gradle 파일 편집)
+        - "Spring context" 로 mvnrepositroy.com에서 검색한다.
+        - 명령창에서 project폴더 안에서 ">gradle eclipse" 실행한다.
+        - 이클립스에서 프로젝트를 새로고침한다.
+    - Spring 설정 파일 추가(application_context.xml)
+        - bitcamp/java110/cms/conf/application-context.xml

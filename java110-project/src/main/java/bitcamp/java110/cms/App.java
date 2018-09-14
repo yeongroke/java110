@@ -1,7 +1,8 @@
 package bitcamp.java110.cms;
 import java.util.Scanner;
 
-import bitcamp.java110.cms.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
 
@@ -11,8 +12,17 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-        ApplicationContext iocContainer = 
-                new ApplicationContext("bitcamp.java110.cms");
+        ClassPathXmlApplicationContext iocContainer = 
+                new ClassPathXmlApplicationContext("bitcamp/java110/cms/conf/application-context.xml");
+                    //Classpath에서 비트캠프 밑에 java110밑에 cms 밑에 경로를 찾는거다
+        
+        //IoC 컨네이터가 생성한 객체 조회하기
+        System.out.println("--------------------------");
+        String [] nameList = iocContainer.getBeanDefinitionNames();
+        for(String name : nameList) {
+            System.out.println(name);
+        }
+        System.out.println("--------------------------");
         
         RequestMappingHandlerMapping requestHandlerMap = 
                 new RequestMappingHandlerMapping();
@@ -49,6 +59,7 @@ public class App {
         }
         
         keyIn.close();
+        iocContainer.close();
     }
 
     private static String prompt() {
@@ -56,25 +67,3 @@ public class App {
         return keyIn.nextLine();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

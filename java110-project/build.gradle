@@ -23,6 +23,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     //mariadb jdbc driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
+    //Spring IoC 컨테이너 관련 라이브러리
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
+    
 }
 
 repositories {
