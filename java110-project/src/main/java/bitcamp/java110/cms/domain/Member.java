@@ -2,14 +2,20 @@ package bitcamp.java110.cms.domain;
 
 import java.io.Serializable;
 
-public class Member implements Serializable{ //Serializable 이걸써쭈었기때문에 문자가 제대로 출력이된다
-
+public class Member implements Serializable {
     private static final long serialVersionUID = 1L;
+    
+    protected int no;
     protected String name;
     protected String email;
-    //transient 필드 = Serialize(직렬화=바이트 배열화) : 대상에서 제외한다
-    protected transient String password;
+    protected String password;
     
+    public int getNo() {
+        return no;
+    }
+    public void setNo(int no) {
+        this.no = no;
+    }
     public String getName() {
         return name;
     }

@@ -1,11 +1,11 @@
-package annotation;
+package bitcamp.java110.cms.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE,ElementType.METHOD})//두개이상일때는 { } 이걸써주어야한다 elementtype배열임
+@Target({ElementType.TYPE,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestMapping {
     String value() default "";

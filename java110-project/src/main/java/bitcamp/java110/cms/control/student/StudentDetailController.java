@@ -2,16 +2,17 @@ package bitcamp.java110.cms.control.student;
 
 import java.util.Scanner;
 
-import annotation.Autowired;
-import annotation.Component;
-import annotation.RequestMapping;
+import bitcamp.java110.cms.annotation.Autowired;
+import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentDetailController {
-  
+    
     StudentDao studentDao;
+    
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
@@ -19,12 +20,12 @@ public class StudentDetailController {
     
     @RequestMapping("student/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 학생의 이메일 ");
-        String email = keyIn.nextLine();
-        Student student = studentDao.findByEmail(email);
+        System.out.print("조회할 학생의 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+        Student student = studentDao.findByNo(no);
         
-        if (email ==null ) {
-            System.out.println("해당이메일이 없습니다.");
+        if (student == null) {
+            System.out.println("해당 번호의 학생 정보가 없습니다!");
             return;
         }
         

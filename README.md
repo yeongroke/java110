@@ -156,3 +156,17 @@
     - 리턴 값이 아닌 별도의 경로로 예외 상황을 호출자에게 알린다.
     - 이전 방식에 비해 메서드의 리턴 타입에 영향을 받지 않는다.
     - 예외 상황을 자세하게 호출자에게 알릴 수 있다.
+    
+## java110-project (tag: v2.3)
+
+- DAO에 JDBC 적용
+- 작업
+    - Data Modeling과 forward engineering 수행
+    - 테이블 준비
+    - JDBC API 활용
+    - 트랜잭션 다루기
+
+## java110-project (tag: v2.4)
+
+- DB 커넥션 공유하기
+- impl폴더를 각 mysql 하나씩 정리

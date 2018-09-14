@@ -2,9 +2,9 @@ package bitcamp.java110.cms.control.teacher;
 
 import java.util.Scanner;
 
-import annotation.Autowired;
-import annotation.Component;
-import annotation.RequestMapping;
+import bitcamp.java110.cms.annotation.Autowired;
+import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
 
@@ -12,27 +12,28 @@ import bitcamp.java110.cms.domain.Teacher;
 public class TeacherDetailController {
     
     TeacherDao teacherDao;
+    
     @Autowired
     public void setTeacherDao(TeacherDao teacherDao) {
         this.teacherDao = teacherDao;
     }
-    
+
     @RequestMapping("teacher/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 이메일? ");
-        String email = keyIn.nextLine();
-        Teacher teacher = teacherDao.findByEmail(email);
+        System.out.print("조회할 강사의 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+        Teacher t = teacherDao.findByNo(no);
         
-        if (email ==null) {
-            System.out.println("무효한 이메일입니다.");
+        if (t == null) {
+            System.out.println("해당 번호의 강사 정보가 없습니다!");
             return;
         }
         
-        System.out.printf("이름: %s\n", teacher.getName());
-        System.out.printf("이메일: %s\n", teacher.getEmail());
-        System.out.printf("암호: %s\n", teacher.getPassword());
-        System.out.printf("전화: %s\n", teacher.getTel());
-        System.out.printf("시급: %d\n", teacher.getPay());
-        System.out.printf("강의과목: %s\n", teacher.getSubjects());
+        System.out.printf("이름: %s\n", t.getName());
+        System.out.printf("이메일: %s\n", t.getEmail());
+        System.out.printf("암호: %s\n", t.getPassword());
+        System.out.printf("전화: %s\n", t.getTel());
+        System.out.printf("시급: %d\n", t.getPay());
+        System.out.printf("강의과목: %s\n", t.getSubjects());
     }
 }
