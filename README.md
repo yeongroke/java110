@@ -184,3 +184,10 @@
         - 이클립스에서 프로젝트를 새로고침한다.
     - Spring 설정 파일 추가(application_context.xml)
         - bitcamp/java110/cms/conf/application-context.xml
+
+## java110-project (tag: v2.6)
+
+- Client/Server 구조로 변경
+- 소켓 프로그래밍 구현
+- 멀티스레딩 구현
+- 프로토코 개념 이해
