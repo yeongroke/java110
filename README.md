@@ -194,6 +194,20 @@
 
 ## java110-project (tag: v2.7)
 
-- 멀티스레드 적용하기
+- 멀티스레드 적용하기(Connection-Oriented에서 Stateful방식으로 요청 처리)
 - 별도의 스레드를 만들어 클라이언트의 요청을 처리하게 한다.
 - 즉 동시에 여러 클라이언트 요청을 처리한다.
+
+## java110-project (tag: v2.8)
+
+- 멀티스레드 적용하기(Connection-Oriented에서 Stateless방식으로 요청 처리)
+
+## java110-project (tag: v2.9)
+
+- 웹브라우저를 클라이언트로 사용하기
+- 서버에 HTTP 프로토콜을 처리하는 기능 추가
+
+## java110-project (tag: v3.0)
+
+- 웹서버를 중계 서버로 사용하기
+- 서블릿 컨테이너 적용
