@@ -1,69 +1,35 @@
 package bitcamp.java110.cms;
-import java.util.Scanner;
-
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
-import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
 
 public class App {
     
-    static Scanner keyIn = new Scanner(System.in);
-
     public static void main(String[] args) throws Exception {
         
-        ClassPathXmlApplicationContext iocContainer = 
-                new ClassPathXmlApplicationContext("bitcamp/java110/cms/conf/application-context.xml");
-                    //Classpath에서 비트캠프 밑에 java110밑에 cms 밑에 경로를 찾는거다
+        Thread main = Thread.currentThread();
+        //System.out.println(main.getName());
         
-        //IoC 컨네이터가 생성한 객체 조회하기
-        System.out.println("--------------------------");
-        String [] nameList = iocContainer.getBeanDefinitionNames();
-        for(String name : nameList) {
-            System.out.println(name);
+        ThreadGroup mainGroup = main.getThreadGroup();
+        //System.out.println(mainGroup.getName());
+        
+        ThreadGroup systemGroup = mainGroup.getParent();
+        System.out.println(systemGroup.getName());
+        
+        
+        System.out.println("[스레드]");
+        Thread[] threads = new Thread[20];
+        int count = systemGroup.enumerate(threads, false);
+        for(int i = 0; i<count; i++) {
+            System.out.println(threads[i].getName());
         }
-        System.out.println("--------------------------");
-        
-        RequestMappingHandlerMapping requestHandlerMap = 
-                new RequestMappingHandlerMapping();
-        
-        // => IoC 컨테이너에 보관된 객체의 이름 목록을 가져온다.
-        String[] names = iocContainer.getBeanDefinitionNames();
-        for (String name : names) {
-            // => 이름으로 객체를 꺼낸다.
-            Object obj = iocContainer.getBean(name);
-            
-            // => 객체에서 @RequestMapping이 붙은 메서드를 찾아 저장한다.
-            requestHandlerMap.addMapping(obj);
+        System.out.println("[스레드 그룹]");
+        ThreadGroup[] tgs = new ThreadGroup[20];
+        count = systemGroup.enumerate(tgs, false);
+        for(int i = 0; i<count; i++) {
+            System.out.println(tgs[i].getName());
         }
-        
-        while (true) {
-            String menu = prompt();
-            if (menu.equals("exit")){
-                System.out.println("안녕히 가세요!");
-                break;
-            } 
-            
-            RequestMappingHandler mapping = requestHandlerMap.getMapping(menu);
-            if (mapping == null) {
-                System.out.println("해당 메뉴가 없습니다.");
-                continue;
-            }
-            
-            try {
-                mapping.getMethod().invoke(mapping.getInstance(), keyIn);
-            } catch (Exception e) {
-                System.out.println("실행 오류!");
-                System.out.println(e.getCause());
-            }
+        System.out.println("[main 그룹의 스레드]");
+        count = mainGroup.enumerate(threads, false);
+        for(int i = 0; i<count; i++) {
+            System.out.println(threads[i].getName());
         }
-        
-        keyIn.close();
-        iocContainer.close();
-    }
-
-    private static String prompt() {
-        System.out.print("메뉴> ");
-        return keyIn.nextLine();
     }
 }

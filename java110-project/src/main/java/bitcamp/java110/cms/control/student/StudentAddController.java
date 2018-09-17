@@ -18,7 +18,7 @@ public class StudentAddController {
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
-    }
+    } 
 
     @RequestMapping("student/add")
     public void add(Request request , Response response) {
