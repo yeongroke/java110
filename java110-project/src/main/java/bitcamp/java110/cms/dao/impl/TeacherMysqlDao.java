@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -17,15 +16,18 @@ import bitcamp.java110.cms.util.DataSource;
 
 @Component
 public class TeacherMysqlDao implements TeacherDao {
-    
+
     DataSource dataSource;
+    
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
     public int insert(Teacher teacher) throws DaoException {
-        Statement stmt = null;
         Connection con = null;
+        Statement stmt = null;
+        
         try {
             con = dataSource.getConnection();
             
@@ -57,7 +59,7 @@ public class TeacherMysqlDao implements TeacherDao {
             return 1;
             
         } catch (Exception e) {
-            try {con.rollback();}catch(Exception e2) {}
+            try {con.rollback();} catch (Exception e2) {}
             throw new DaoException(e);
             
         } finally {
@@ -69,11 +71,12 @@ public class TeacherMysqlDao implements TeacherDao {
         
         ArrayList<Teacher> list = new ArrayList<>();
         
+        Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
         
         try {
-            Connection con = dataSource.getConnection();
+            con = dataSource.getConnection();
             
             stmt = con.createStatement();
             
@@ -112,10 +115,7 @@ public class TeacherMysqlDao implements TeacherDao {
         ResultSet rs = null;
         
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
-            con = DriverManager.getConnection(
-                    "jdbc:mariadb://localhost:3306/studydb", 
-                    "study", "1111");
+            con = dataSource.getConnection();
             
             stmt = con.createStatement();
             rs = stmt.executeQuery(
@@ -152,11 +152,12 @@ public class TeacherMysqlDao implements TeacherDao {
     }
     
     public Teacher findByNo(int no) throws DaoException {
+        Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
         
         try {
-            Connection con = dataSource.getConnection();
+            con = dataSource.getConnection();
             
             stmt = con.createStatement();
             rs = stmt.executeQuery(
@@ -216,7 +217,7 @@ public class TeacherMysqlDao implements TeacherDao {
             return 1;
             
         } catch (Exception e) {
-            try {con.rollback();}catch(Exception e2) {}
+            try {con.rollback();} catch (Exception e2) {}
             throw new DaoException(e);
             
         } finally {
@@ -224,3 +225,12 @@ public class TeacherMysqlDao implements TeacherDao {
         }
     }
 }
+
+
+
+
+
+
+
+
+

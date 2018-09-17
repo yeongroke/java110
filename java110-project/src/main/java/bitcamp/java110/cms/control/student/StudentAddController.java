@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
@@ -18,24 +19,23 @@ public class StudentAddController {
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
         this.studentDao = studentDao;
-    } 
+    }
 
     @RequestMapping("student/add")
-    public void add(Request request , Response response) {
-        while (true) {
-            Student m = new Student();
-            
-            m.setName(request.getParameter("name"));
-            m.setEmail(request.getParameter("email"));
-            m.setPassword(request.getParameter("password"));
-            m.setSchool(request.getParameter("school"));
-            m.setWorking(Boolean.parseBoolean(request.getParameter("working")));
-            m.setTel(request.getParameter("tel"));
-            
-            studentDao.insert(m);
-            
-            PrintWriter out = response.getWriter();
-            out.println("등록하였습니다");
+    public void add(Request request, Response response) {
+        Student m = new Student();
+        m.setName(request.getParameter("name"));
+        m.setEmail(request.getParameter("email"));
+        m.setPassword(request.getParameter("password"));
+        m.setTel(request.getParameter("tel"));
+        m.setSchool(request.getParameter("school"));
+        m.setWorking(Boolean.parseBoolean(request.getParameter("working")));
+        
+        PrintWriter out = response.getWriter();
+        if (studentDao.insert(m) > 0) {
+            out.println("저장하였습니다.");
+        } else {
+            out.println("같은 이메일의 학생이 존재합니다.");
         }
     }
 }

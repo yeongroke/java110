@@ -35,11 +35,10 @@ public class Member implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getTel() { 
+    public String getTel() {
         return tel;
     }
     public void setTel(String tel) {
         this.tel = tel;
     }
-
 }

@@ -1,6 +1,5 @@
 package bitcamp.java110.cms.control.manager;
 
-
 import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +22,15 @@ public class ManagerDetailController {
     }
 
     @RequestMapping("manager/detail")
-    public void detail(Request request , Response response) {
+    public void detail(Request request, Response response) {
+        
         int no = Integer.parseInt(request.getParameter("no"));
         Manager m = managerDao.findByNo(no);
         
         PrintWriter out = response.getWriter();
         
         if (m == null) {
-            System.out.println("해당 번호의 매니저가 없습니다!");
+            out.println("해당 번호의 매니저가 없습니다!");
             return;
         }
         
@@ -42,3 +42,9 @@ public class ManagerDetailController {
     }
     
 }
+
+
+
+
+
+

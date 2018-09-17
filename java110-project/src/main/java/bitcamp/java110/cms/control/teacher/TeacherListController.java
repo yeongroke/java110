@@ -2,8 +2,10 @@ package bitcamp.java110.cms.control.teacher;
 
 import java.io.PrintWriter;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
@@ -21,7 +23,8 @@ public class TeacherListController {
     }
 
     @RequestMapping("teacher/list")
-    public void list(Request resquest , Response response) {
+    public void list(Request request, Response response) {
+        
         PrintWriter out = response.getWriter();
         List<Teacher> list = teacherDao.findAll();
         

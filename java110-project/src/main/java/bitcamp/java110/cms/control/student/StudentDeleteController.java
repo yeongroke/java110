@@ -21,12 +21,10 @@ public class StudentDeleteController {
     }
     
     @RequestMapping("student/delete")
-    public void delete(Request request , Response response) {
-        System.out.print("삭제할 학생의 번호? ");
+    public void delete(Request request, Response response) {
         int no = Integer.parseInt(request.getParameter("no"));
         
         PrintWriter out = response.getWriter();
-        
         if (studentDao.delete(no) > 0) {
             out.println("삭제하였습니다.");
         } else {

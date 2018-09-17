@@ -1,8 +1,10 @@
 package bitcamp.java110.cms.control.manager;
 
 import java.io.PrintWriter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.server.Request;
@@ -19,8 +21,7 @@ public class ManagerDeleteController {
     }
     
     @RequestMapping("manager/delete")
-    public void delete(Request request , Response response) {
-        System.out.print("삭제할 매니저의 번호? ");
+    public void delete(Request request, Response response) {
         int no = Integer.parseInt(request.getParameter("no"));
         
         PrintWriter out = response.getWriter();
@@ -33,3 +34,12 @@ public class ManagerDeleteController {
     }
     
 }
+
+
+
+
+
+
+
+
+

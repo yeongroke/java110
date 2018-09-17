@@ -22,21 +22,43 @@ public class ManagerAddController {
     }
     
     @RequestMapping("manager/add")
-    public void add(Request request , Response response) {
-        while (true) {
-            Manager m = new Manager();
-            
-            m.setName(request.getParameter("name"));
-            m.setEmail(request.getParameter("email"));
-            m.setPassword(request.getParameter("password"));
-            m.setPosition(request.getParameter("position"));
-            m.setTel(request.getParameter("tel"));
-            
-            managerDao.insert(m);
-            
-            PrintWriter out = response.getWriter();
-            out.println("등록하였습니다");
+    public void add(Request request, Response response) {
+
+        Manager m = new Manager();
+        m.setName(request.getParameter("name"));
+        m.setEmail(request.getParameter("email"));
+        m.setPassword(request.getParameter("password"));
+        m.setTel(request.getParameter("tel"));
+        m.setPosition(request.getParameter("position"));
+        
+        PrintWriter out = response.getWriter();
+        if (managerDao.insert(m) > 0) {
+            out.println("저장하였습니다.");
+        } else {
+            out.println("같은 이메일의 매니저가 존재합니다.");
         }
     }
     
 }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
