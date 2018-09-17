@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ClientApp {
+public class ClientApp { 
 
     static Scanner keyIn = new Scanner(System.in);
 
