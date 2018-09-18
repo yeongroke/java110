@@ -8,8 +8,8 @@
 
 plugins {
     id 'java'
-    id 'application'
-    id 'eclipse'
+    id 'eclipse-wtp' // tomcat 설치하면서 써줌
+    id 'war'  // tomcat 설치하면서 써줌
 }
 
 tasks.withType(JavaCompile) { 
@@ -17,9 +17,6 @@ tasks.withType(JavaCompile) {
       sourceCompatibility = '1.8' 
       targetCompatibility = '1.8' 
   } 
-
-
-mainClassName = 'bitcamp.java110.cms.App'
 
 dependencies { 
 //프로젝트에서 사용할 라이브러리 등록(설정)하는 공간
@@ -32,6 +29,8 @@ dependencies {
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
     //Spring IoC 컨테이너 관련 라이브러리
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
+    //tomcat9
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     
 }
 
