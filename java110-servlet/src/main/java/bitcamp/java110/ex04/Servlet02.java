@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
  * 클라이언트가 보낸 데이터 읽기 - POST 요청으로 보낸 데이터 
  */
 
-@WebServlet("/ex04/servlet02")
+//@WebServlet("/ex04/servlet02")
 public class Servlet02 extends GenericServlet {
 
     private static final long serialVersionUID = 1L;

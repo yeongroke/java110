@@ -12,7 +12,8 @@ dependencies {
     compile 'com.google.guava:guava:23.0'
     testCompile 'junit:junit:4.12'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-    
+    //file upload 커리 라이브러리
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
 }
 repositories {
     mavenCentral()
