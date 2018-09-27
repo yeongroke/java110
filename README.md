@@ -222,3 +222,12 @@
 - 서블릿 기술을 적용하여 서버 애플리케이션 만들기
 - 작업
     - 클라이언트 요청을 처리하는 컨트롤러를 서블릿으로 전환한다.
+
+## java110-project (tag: v4.1)
+
+- 서블릿의 loadOnStartUp 배치 속성을 이용하여 공용 자원을 준비하기
+- ServletContext를 이용하여 공용자원을 공유하기
+- 작업
+    - InitServlet 클래스 속성
+    - InitServlet에서 DAO와 DataSource 준비하기
+    - ServletContext에 DAO 보관하기
