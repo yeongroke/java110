@@ -11,24 +11,30 @@ import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @WebServlet("/student/detail")
-public class StudentDetailServlet extends HttpServlet{
-    
+public class StudentDetailServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException{
-        
-        StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
+    protected void doGet(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
+
+
         int no = Integer.parseInt(request.getParameter("no"));
-        
+
+        StudentDao studentDao = (StudentDao)this.getServletContext()
+                .getAttribute("studentDao");
+
         Student student = studentDao.findByNo(no);
+
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (student == null) {
             out.println("해당 번호의 학생 정보가 없습니다!");
             return;
         }
-        
+
         out.printf("이름: %s\n", student.getName());
         out.printf("이메일: %s\n", student.getEmail());
         out.printf("암호: %s\n", student.getPassword());
@@ -36,4 +42,5 @@ public class StudentDetailServlet extends HttpServlet{
         out.printf("전화: %s\n", student.getTel());
         out.printf("재직여부: %b\n", student.isWorking());
     }
+
 }

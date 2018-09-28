@@ -12,16 +12,21 @@ import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @WebServlet("/student/list")
-public class StudentListServlet extends HttpServlet{
-    
+public class StudentListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException , IOException{
-        
+    protected void doGet(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
+
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        StudentDao studentDao = (StudentDao)this.getServletContext().getAttribute("studentDao");
+
+        StudentDao studentDao = (StudentDao)this.getServletContext()
+                .getAttribute("studentDao");
+
         List<Student> list = studentDao.findAll();
         for (Student s : list) {
             out.printf("%d, %s, %s, %s, %b\n",

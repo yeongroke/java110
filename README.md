@@ -231,3 +231,14 @@
     - InitServlet 클래스 속성
     - InitServlet에서 DAO와 DataSource 준비하기
     - ServletContext에 DAO 보관하기
+
+## java110-project (tag: v4.2)
+
+- 리스너를 이용하여 공용 자원을 준비하기
+- 작업
+    - ContextLoaderListener 클래스 생성
+    - 이 리스너에서 DAO 준비하기
+
+## java110-project (tag: v4.3)
+
+- 
