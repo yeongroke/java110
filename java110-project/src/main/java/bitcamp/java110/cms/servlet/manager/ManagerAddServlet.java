@@ -1,14 +1,12 @@
 package bitcamp.java110.cms.servlet.manager;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
 
@@ -34,31 +32,28 @@ public class ManagerAddServlet extends HttpServlet {
         m.setTel(request.getParameter("tel"));
         m.setPosition(request.getParameter("position"));
         
-        response.setContentType("text/plain;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
         ManagerDao managerDao = (ManagerDao)this.getServletContext()
                 .getAttribute("managerDao");
         
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.println("<title>매니저 관리</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>매니저 등록결과</h1>");
-        
         try {
-        managerDao.insert(m);
-            out.println("<p>저장하였습니다.</p>");
+            managerDao.insert(m);
+            // 오류 없이 등록에 성공했으면, 
+            // 목록 페이지를 다시 요청하라고 redirect 명령을 보낸다.
+            response.sendRedirect("list");
+            //out.println("<p>저장하였습니다.</p>");
         } catch(Exception e) {
-            e.printStackTrace();
-            out.println("<p>등록 중 오류 발생!</p>");
+            // 오류 내용을 처리하는 서블릿으로 실행을 위임한다.
+            RequestDispatcher rd = request.getRequestDispatcher("/error");
+            
+            // 위임하기 전에 작업을 수행하는데 필요한 정보를
+            // ServletRequest 보관소에 담아 전달한다.
+            request.setAttribute("error", e);
+            request.setAttribute("message", "매니저 등록 오류");
+            request.setAttribute("refresh", "3;url=list");
+            
+            // 작업을 위임한다.
+            rd.forward(request, response);
+            
         }
-
-        out.println("</body>");
-        out.println("</html>");
     }
-    
 }

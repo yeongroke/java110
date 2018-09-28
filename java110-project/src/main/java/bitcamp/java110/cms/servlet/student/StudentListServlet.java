@@ -20,7 +20,7 @@ public class StudentListServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) 
                     throws ServletException, IOException {
-
+        response.setHeader("Refresh", "1;url=list");
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 

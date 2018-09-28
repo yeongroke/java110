@@ -27,7 +27,6 @@ public class StudentDetailServlet extends HttpServlet {
                 .getAttribute("studentDao");
 
         Student student = studentDao.findByNo(no);
-
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
