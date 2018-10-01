@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.servlet.student;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,19 +23,23 @@ public class StudentDeleteServlet extends HttpServlet {
         
         int no = Integer.parseInt(request.getParameter("no"));
         
+        
         StudentDao studentDao = (StudentDao)this.getServletContext()
                 .getAttribute("studentDao");
         
         
         try {
             studentDao.delete(no);
-        } catch(Exception e) {
+            response.sendRedirect("list");
+            
+        } catch (Exception e) {
             request.setAttribute("error", e);
-            request.setAttribute("message", "학생 삭제 오류");
+            request.setAttribute("message", "학생 삭제 오류!");
             request.setAttribute("refresh", "3;url=list");
             
             request.getRequestDispatcher("/error").forward(request, response);
         }
+        
     }
 
 }

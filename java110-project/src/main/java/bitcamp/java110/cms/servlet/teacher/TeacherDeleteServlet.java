@@ -25,17 +25,18 @@ public class TeacherDeleteServlet extends HttpServlet {
         TeacherDao teacherDao = (TeacherDao)this.getServletContext()
                 .getAttribute("teacherDao");
         
-        
         try {
             teacherDao.delete(no);
             response.sendRedirect("list");
-        } catch(Exception e) {
+            
+        } catch (Exception e) {
             request.setAttribute("error", e);
-            request.setAttribute("message", "선생님 삭제 오류");
+            request.setAttribute("message", "강사 삭제 오류!");
             request.setAttribute("refresh", "3;url=list");
             
             request.getRequestDispatcher("/error").forward(request, response);
         }
+        
     }
 
 }
