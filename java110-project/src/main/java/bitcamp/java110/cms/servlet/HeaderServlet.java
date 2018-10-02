@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.ibatis.javassist.expr.Instanceof;
 import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.domain.Teacher;
