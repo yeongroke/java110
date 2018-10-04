@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,7 @@
 <h1>표현식(Expression Element)</h1>
 <pre>
 - 실행 결과를 출력할 때 사용한다.
-    &lt;%= 표현식 %>
+    &lt;%= 표현식 %> 
 - 자바코드:
     표현식 안에 작성한 코드가 출력문의 파라미터로 복사된다.
     out.print(표현식)
@@ -18,8 +19,18 @@
     어떤 결과를 리턴하는 코드이다.
 </pre>
 <p>100 + 200 = <% out.print(100 + 200); %></p>
-<p>100 + 200 = <%= 100 + 200%></p>
-<%= Math.random() %>
-out.print(Math.random());
+<p>100 + 200 = <%= 100 + 200%></p> 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -283,3 +283,7 @@
 - 작업
     - AuthFilter 클래스를 생성하여 등록한다.
     - 로그인 사용자만 add와 delete를 할 수 있도록 제어한다.
+
+## java110-project (tag: v4.8)
+
+- JSP를 활용한 MVC 모델 1타입
