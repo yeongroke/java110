@@ -31,7 +31,7 @@ public class HeaderServlet extends HttpServlet {
         Member loginUser = (Member)session.getAttribute("loginUser");
         
         if(loginUser == null) {
-            out.println("<li><a href='/auth/login'>로그인</a><l/i>");
+            out.println("<li><a href='/auth/login'>로그인</a><li>");
         } else {
             String loginType = "학생";
             if (loginUser instanceof Manager) {
@@ -49,17 +49,3 @@ public class HeaderServlet extends HttpServlet {
         out.println("</header>");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

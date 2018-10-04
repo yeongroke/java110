@@ -287,3 +287,5 @@
 ## java110-project (tag: v4.8)
 
 - JSP를 활용한 MVC 모델 1타입
+- 작업
+    - /webapp/mvc1/manager/list.jsp 생성
