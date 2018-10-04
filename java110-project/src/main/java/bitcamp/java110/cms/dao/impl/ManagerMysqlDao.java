@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
 import bitcamp.java110.cms.dao.DaoException;
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.domain.Manager;
@@ -199,7 +198,7 @@ public class ManagerMysqlDao implements ManagerDao {
             int count = stmt.executeUpdate(sql);
             
             if (count == 0)
-                return 0;
+                throw new Exception("일치하는 번호가 없습니다.");
             
             String sql2 = "delete from p1_memb where mno=" + no;
             stmt.executeUpdate(sql2);
