@@ -38,13 +38,14 @@ table, th, td {
 />
 <%
 for (Teacher t : list) {
+    pageContext.setAttribute("t",t);
 %>
 <tr>
-    <td><%=t.getNo()%></td>
-    <td><a href='detail?no=<%=t.getNo()%>'><%=t.getName()%></a></td>
-    <td><%=t.getEmail()%></td>
-    <td><%=t.getPay()%></td>
-    <td><%=t.getSubjects()%></td>
+    <td>${t.no}</td>
+    <td><a href='detail?no=${t.no}'>${t.name}</a></td>
+    <td>${t.email}</td>
+    <td>${t.pay}</td>
+    <td>${t.subjects}</td>
 </tr>
 <%
 }

@@ -1,6 +1,4 @@
 <%@page import="bitcamp.java110.cms.domain.Manager"%>
-<%@page import="java.util.List"%>
-<%@page import="bitcamp.java110.cms.dao.ManagerDao"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -49,12 +47,13 @@ if (list == null) {
 */
 
 for (Manager m : list) {
+    pageContext.setAttribute("m",m);
 %>
 <tr>
-    <td><%=m.getNo()%></td>
-    <td><a href='detail?no=<%=m.getNo()%>'><%=m.getName()%></a></td>
-    <td><%=m.getEmail()%></td>
-    <td><%=m.getPosition()%></td>
+    <td>${m.no}</td>
+    <td><a href='detail?no=${m.no}'>${m.name}</a></td>
+    <td>${m.email}</td>
+    <td>${m.position}</td>
 </tr>
 <%
 }
