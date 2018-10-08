@@ -1,8 +1,10 @@
 <%@page import="bitcamp.java110.cms.domain.Manager"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@page import="bitcamp.java110.cms.dao.ManagerDao"%>
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,9 @@ table, th, td {
 </style>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
+
+<jsp:include page="../header.jsp"></jsp:include>
+
 <h1>매니저 목록(MVC)</h1>
 <p><a href='add'>추가</a></p>
 <table>
@@ -26,19 +30,57 @@ table, th, td {
 </tr>
 </thead>
 <tbody>
+
+<jsp:useBean
+    scope="request"
+    id="list"
+    class="java.util.ArrayList"
+    type="java.util.List<Manager>"
+/>
+
 <%
-List<Manager> list = (List<Manager>)request.getAttribute("list");
+/* 위의 jsp:useBean은 다음 자바코드로 변환된다.
+java.util.List<Manager> list = 
+    (java.util.List<Manager>)request.getAttribute("list");
+if (list == null) {
+    list = new java.util.ArrayList();
+    request.setAttribute("list", list);
+}
+*/
+
 for (Manager m : list) {
 %>
 <tr>
-    <td><%= m.getNo() %></td>
-    <td><a href='detail?no=<%= m.getNo() %>'><%= m.getName() %></a></td>
-    <td><%= m.getEmail() %></td>
-    <td><%= m.getPosition() %></td>
+    <td><%=m.getNo()%></td>
+    <td><a href='detail?no=<%=m.getNo()%>'><%=m.getName()%></a></td>
+    <td><%=m.getEmail()%></td>
+    <td><%=m.getPosition()%></td>
 </tr>
-<% } %>
+<%
+}
+%>
+
 </tbody>
 </table>
+
 <jsp:include page="../footer.jsp"/>
+
 </body>
 </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

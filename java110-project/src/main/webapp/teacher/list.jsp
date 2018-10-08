@@ -1,8 +1,9 @@
 <%@page import="bitcamp.java110.cms.domain.Teacher"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,10 @@ table, th, td {
 </style>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
-<h1>강사 목록(mvc)</h1>
+
+<jsp:include page="../header.jsp"></jsp:include>
+
+<h1>강사 목록(MVC)</h1>
 <p><a href='add'>추가</a></p>
 <table>
 <thead>
@@ -26,23 +29,33 @@ table, th, td {
 </tr>
 </thead>
 <tbody>
+
+<jsp:useBean
+    scope="request"
+    id="list"
+    class="java.util.ArrayList"
+    type="java.util.List<Teacher>"
+/>
 <%
-List<Teacher> list = (List<Teacher>)request.getAttribute("list");
 for (Teacher t : list) {
 %>
 <tr>
-    <td><%=t.getNo() %></td>
-    <td><a href='detail?no=<%=t.getNo() %>'><%=t.getName() %></a></td>
-    <td><%=t.getEmail() %></td>
-    <td><%=t.getPay() %></td>
-    <td><%=t.getSubjects() %></td>
+    <td><%=t.getNo()%></td>
+    <td><a href='detail?no=<%=t.getNo()%>'><%=t.getName()%></a></td>
+    <td><%=t.getEmail()%></td>
+    <td><%=t.getPay()%></td>
+    <td><%=t.getSubjects()%></td>
 </tr>
 <%
 }
 %>
+
 </tbody>
 </table>
+
 <jsp:include page="../footer.jsp"/>
+
 </body>
 </html>
 
+    

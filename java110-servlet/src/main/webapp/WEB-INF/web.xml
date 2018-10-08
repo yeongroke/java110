@@ -11,19 +11,19 @@
       웹 애플리케이션에 대한 간단한 설명을 기술한다.
     </description>
     <display-name>서버 관리페이지에 출력될 웹 애플리케이션 이름</display-name>
-    
-    <!-- 컨텍스트 초기화 파라미터  설정-->
+
+    <!-- 컨텍스트 초기화 파라미터 설정 -->
     <context-param>
         <param-name>aaa</param-name>
         <param-value>okok</param-value>
     </context-param>
-    
+
     <!-- 리스너 클래스에 대한 정보 설정 -->
     <listener>
         <listener-class>bitcamp.java110.ex07.Listener01</listener-class>
     </listener>
-    
-    <!-- 
+
+    <!--  
     <request-character-encoding>UTF-8</request-character-encoding>
     -->
     
@@ -37,7 +37,7 @@
       <servlet-class>bitcamp.java110.ex06.Servlet04</servlet-class>
       <init-param>
         <param-name>aaa</param-name>
-        <param-value>hello1</param-value>
+        <param-value>hello</param-value>
       </init-param>
       <init-param>
         <param-name>bbb</param-name>
@@ -48,44 +48,50 @@
         <param-value>hello3</param-value>
       </init-param>
       <load-on-startup>1</load-on-startup>
-      <!-- load는 param뒤에 나와야 에러가 안뜬다 -->
     </servlet>
     <servlet>
       <servlet-name>Servlet05</servlet-name>
       <servlet-class>bitcamp.java110.ex06.Servlet05</servlet-class>
+      <!-- 서블릿 초기화 파라미터 설정 -->
       <init-param>
         <param-name>aaa</param-name>
-        <param-value>hello1</param-value>
+        <param-value>hello</param-value>
       </init-param>
     </servlet>
-    <!-- 서블릿 클래스에 대해 요청 URL을 설정 
-         이렇게 애노테이션 webServlet을 쓰면 간단하지만 이걸 쓰는이유는
-         현업에서 쓰는 곳이 있기 때문이다-->
-    <servlet-mapping> 
+    
+    <!-- 서블릿 클래스에 대해 요청 URL을 설정 -->
+    <servlet-mapping>
         <servlet-name>Servlet03</servlet-name>
-        <url-pattern>/ex06/Servlet03</url-pattern>
+        <url-pattern>/ex06/servlet03</url-pattern>
     </servlet-mapping>
-    <servlet-mapping> 
+    <servlet-mapping>
         <servlet-name>Servlet04</servlet-name>
-        <url-pattern>/ex06/Servlet04</url-pattern>
+        <url-pattern>/ex06/servlet04</url-pattern>
     </servlet-mapping>
-    <servlet-mapping> 
+    <servlet-mapping>
         <servlet-name>Servlet05</servlet-name>
-        <url-pattern>/ex06/Servlet05</url-pattern>
+        <url-pattern>/ex06/servlet05</url-pattern>
     </servlet-mapping>
     
-    <!-- 클라이언트가 요청한 URL에 대해 정적 파일을 찾을 때 우선 순위 -->
+    <!-- 클라이언트가 요청한 URL에 대해 기본 파일을 찾을 때 우선 순위 -->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
-        <welcome-file>index.xhtml</welcome-file>
-        <welcome-file>index.htm</welcome-file>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    
-    <!-- 세션의 타임아웃 설정(단위 : 분) -->
+
+    <!-- 세션의 타임아웃 설정(단위: 분) -->
     <session-config>
         <session-timeout>10</session-timeout>
     </session-config>
 
 
 </web-app>
+
+
+
+
+
+
+
+
+

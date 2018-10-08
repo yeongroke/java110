@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.servlet.auth;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,14 +14,30 @@ public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-
-        //현재 세션 객체를 무효화시킨다.
+        
+        // 현재 세션 객체를 무효화시킨다.
         session.invalidate();
         
         response.sendRedirect("login");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

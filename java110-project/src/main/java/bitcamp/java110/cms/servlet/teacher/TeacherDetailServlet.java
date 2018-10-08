@@ -1,12 +1,14 @@
 package bitcamp.java110.cms.servlet.teacher;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
 
@@ -26,12 +28,12 @@ public class TeacherDetailServlet extends HttpServlet {
                 .getAttribute("teacherDao");
         
         Teacher t = teacherDao.findByNo(no);
-        
-        request.setAttribute("teacher",t);
+        request.setAttribute("teacher", t);
         
         response.setContentType("text/html;charset=UTF-8");
 
-        RequestDispatcher rd = request.getRequestDispatcher("/teacher/detail.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher(
+                "/teacher/detail.jsp");
         rd.include(request, response);
     }
 

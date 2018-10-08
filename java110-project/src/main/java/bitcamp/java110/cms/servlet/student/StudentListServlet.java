@@ -2,6 +2,7 @@ package bitcamp.java110.cms.servlet.student;
 
 import java.io.IOException;
 import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,16 +22,18 @@ public class StudentListServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) 
             throws ServletException, IOException {
+        
         StudentDao studentDao = (StudentDao)this.getServletContext()
                 .getAttribute("studentDao");
         
         List<Student> list = studentDao.findAll();
-        
         request.setAttribute("list", list);
         
         response.setContentType("text/html;charset=UTF-8");
         
-        RequestDispatcher rd = request.getRequestDispatcher("/student/list.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher(
+                "/student/list.jsp");
         rd.include(request, response);
+        
     }
 }

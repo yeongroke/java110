@@ -295,4 +295,9 @@
 - MVC type 2 작업
     - /webapp/manager/list.jsp 생성
     - ManagerListServlet 변경
-    
+
+## java110-project (tag: v5.0)  
+   
+- JSP 액션 태그 적용  
+- 작업  
+    - list.jsp, detail.jsp에 JSP 액션 태그를 적용한다.  

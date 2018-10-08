@@ -6,19 +6,18 @@
 </head>
 <body>
 <h1>POST 요청 보내기 - 한글 깨짐 해결</h1>
-<!--
-action 속성:
-=> 현재 HTML의 경로와 서버에 요청하는 자원의 경로가 일치한 부분이 있다면
-        그 부분을 생략하여 상대 경로로 표시하는 것이 유지보수에 좋다.
-=> ex)
-    현재 경로 : http://localhost:8888/ex04/post.html
-    요청 경로 : http://localhost:8888/ex04/servlet05
-    즉 같은 폴더이기 때문에 : servlet05 라고 말해도 된다.
-        만약에 안에 폴더가 또 있으면 ../servlet02이런식으로 해도됨
-
+<!-- 
+action 속성: 
+=> 현재 HTML의 경로와 서버에 요청하는 자원의 경로가 일치한 부분이 있다면 
+   그 부분을 생략하여 상대 경로로 표시하는 것이 유지보수에 좋다.
+=> 예)
+   현재 경로: http://localhost:8888/ex04/post2.html
+   요청 경로: http://localhost:8888/ex04/servlet05
+   즉 같은 폴더이기 때문에 : servlet05
+   
 method 속성:
 => 생략하면 get이다.
-=> get 또는 host이다.
+=> get 또는 post를 지정할 수 있다. 
  -->
 <form action="servlet05" method="post">
 이름: <input type="text" name="name"><br>
@@ -26,14 +25,18 @@ method 속성:
 재직여부: <select name="working">
     <option value="true">재직중</option>
     <option value="false">미취업</option>
-</select>
+</select><br>
 <button type="submit">보내기</button>
-<!-- type을 빼면 기본값이 submit으로 설정이 된다. -->
 <button type="reset">취소</button>
-<!-- 요즘은 이렇게 안쓰고 button을 쓴다. 
-<input type="submit" value="보내기">
-<input type="reset" value="취소"> 
--->
 </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

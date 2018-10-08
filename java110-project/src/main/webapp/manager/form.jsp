@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
@@ -14,8 +15,10 @@ th {
 </style>
 </head>
 <body>
-<jsp:include page="../header.jsp"/>
-<h1>매니저 등록(mvc)</h1>
+
+<jsp:include page="../header.jsp"></jsp:include>
+
+<h1>매니저 등록(MVC)</h1>
 
 <form action='add' method='post'>
 <table>
@@ -47,6 +50,20 @@ th {
 </tbody>
 </table>
 </form>
+
 <jsp:include page="../footer.jsp"/>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+    
