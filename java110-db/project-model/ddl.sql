@@ -25,6 +25,9 @@ DROP TABLE IF EXISTS p1_lect_tchr RESTRICT;
 -- 수강생
 DROP TABLE IF EXISTS p1_lect_stud RESTRICT;
 
+-- 회원사진
+DROP TABLE IF EXISTS p1_memb_phot RESTRICT;
+
 -- 회원
 CREATE TABLE p1_memb (
     mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
@@ -176,17 +179,23 @@ ALTER TABLE p1_lect_tchr
 
 -- 수강생
 CREATE TABLE p1_lect_stud (
-    sno INTEGER NOT NULL COMMENT '학생번호', -- 학생번호
-    lno INTEGER NOT NULL COMMENT '강의번호' -- 강의번호
+    sno INTEGER NULL COMMENT '학생번호', -- 학생번호
+    lno INTEGER NULL COMMENT '강의번호' -- 강의번호
 )
 COMMENT '수강생';
 
--- 수강생
-ALTER TABLE p1_lect_stud
-    ADD CONSTRAINT PK_p1_lect_stud -- 수강생 기본키
+-- 회원사진
+CREATE TABLE p1_memb_phot (
+    mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+    photo VARCHAR(255) NOT NULL COMMENT '사진' -- 사진
+)
+COMMENT '회원사진';
+
+-- 회원사진
+ALTER TABLE p1_memb_phot
+    ADD CONSTRAINT PK_p1_memb_phot -- 회원사진 기본키
         PRIMARY KEY (
-            sno, -- 학생번호
-            lno  -- 강의번호
+            mno -- 회원번호
         );
 
 -- 게시판
@@ -287,4 +296,14 @@ ALTER TABLE p1_lect_stud
         )
         REFERENCES p1_lect ( -- 강의
             lno -- 강의번호
+        );
+
+-- 회원사진
+ALTER TABLE p1_memb_phot
+    ADD CONSTRAINT FK_p1_memb_TO_p1_memb_phot -- 회원 -> 회원사진
+        FOREIGN KEY (
+            mno -- 회원번호
+        )
+        REFERENCES p1_memb ( -- 회원
+            mno -- 회원번호
         );

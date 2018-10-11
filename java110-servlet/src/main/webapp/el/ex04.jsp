@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>EL - 리터럴(literal)</h1>
-<pre>
+<pre> 
 - EL에서 문자열이나 숫자를 표현하는 방법
 </pre> 
 

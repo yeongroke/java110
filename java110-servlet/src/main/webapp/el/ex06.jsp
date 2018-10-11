@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
@@ -12,7 +15,7 @@
 <body>
 <h1>EL - List 객체에서 값 꺼내기</h1>
 <%
-ArrayList<String> nameList = new ArrayList<>();
+List<String> nameList = new ArrayList<>();
 nameList.add("김구");
 nameList.add("안중근");
 nameList.add("윤봉길");

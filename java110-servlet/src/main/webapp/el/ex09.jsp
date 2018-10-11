@@ -14,6 +14,7 @@
 <h1>EL - 연산자</h1>
 
 <h2>산술연산자</h2>
+
 100 + 200 = ${100 + 200}<br>
 100 - 200 = ${100 - 200}<br>
 100 * 200 = ${100 * 200}<br>
@@ -44,34 +45,24 @@ not true = ${not true}<br>
 100 &lt;= 200 = ${100 <= 200}<br>
 100 le 200 = ${100 le 200}<br>
 
+
+
 <h2>empty</h2>
 <p>보관소에 해당 객체가 없는지 검사한다. 없으면 true, 있으면 false.</p>
-<%
-pageContext.setAttribute("name", new String("홍길동"));
-%>
-name 값이 없는가? ${empty name}<br>
-name2 값이 없는가? ${empty name2}<br>
-
-<h2>조건 연산자 - 조건 ? 식1 : 식2 </h2>
-name == "홍길동" : ${name == "홍길동" ? "맞다!" : "아니다!"}<br>
 
 <%
-String a = "홍길동";
-String b = new String("홍길동");
-if (a == b) { // 인스턴스의 주소를 비교!
-    out.println("== : 같다!<br>");
-} else {
-    out.println("== : 다르다!<br>");
-}
-
-if (a.equals(b)) { // 인스턴스의 값을 비교!
-    out.println("equals() : 같다!<br>");
-} else {
-    out.println("equals() : 다르다!<br>");
-}
+pageContext.setAttribute("name2", new String[]{"Q","W","E"});
 %>
+
+${name2[1]}
+${pageScope.name2[0]}
+
 </body>
 </html>
+
+
+
+
 
 
 

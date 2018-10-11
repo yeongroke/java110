@@ -15,7 +15,7 @@
     pageScope ==> requestScope ==> sessionScope ==> applicationScope
     
 - 보관소에 저장된 값을 찾지 못하면 빈 문자열을 리턴한다.
-</pre> 
+</pre>  
 <%
 session.setAttribute("name", null);
 application.setAttribute("name", null);

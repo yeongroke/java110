@@ -1,14 +1,12 @@
 package bitcamp.java110.cms.servlet.teacher;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import bitcamp.java110.cms.dao.TeacherDao;
+import service.TeacherService;
 
 @WebServlet("/teacher/delete")
 public class TeacherDeleteServlet extends HttpServlet {
@@ -22,11 +20,11 @@ public class TeacherDeleteServlet extends HttpServlet {
 
         int no = Integer.parseInt(request.getParameter("no"));
         
-        TeacherDao teacherDao = (TeacherDao)this.getServletContext()
-                .getAttribute("teacherDao");
+        TeacherService teacherService = (TeacherService)this.getServletContext()
+                .getAttribute("teacherService");
         
         try {
-            teacherDao.delete(no);
+            teacherService.delete(no);
             response.sendRedirect("list");
             
         } catch (Exception e) {
