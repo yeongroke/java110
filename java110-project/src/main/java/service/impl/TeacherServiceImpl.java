@@ -5,6 +5,7 @@ import bitcamp.java110.cms.dao.MemberDao;
 import bitcamp.java110.cms.dao.PhotoDao;
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
+import bitcamp.java110.cms.util.TransactionManager;
 import service.TeacherService;
 
 public class TeacherServiceImpl implements TeacherService{
@@ -28,7 +29,10 @@ public class TeacherServiceImpl implements TeacherService{
     @Override
     public void add(Teacher teacher) {
         // 매니저 등록과 관련된 업무는 Service 객체에서 처리한다.
+        TransactionManager txManager = TransactionManager.getInstance();
         try {
+            txManager.startTransaction();
+            
             memberDao.insert(teacher);
             teacherDao.insert(teacher);
             
@@ -36,6 +40,10 @@ public class TeacherServiceImpl implements TeacherService{
             photoDao.insert(teacher.getNo(), teacher.getPhoto());
             }
         }catch(Exception e) {
+            try {
+                txManager.commit();
+            }catch(Exception e2) {}
+            try{txManager.rollback();}catch(Exception e2) {}
             throw new RuntimeException(e);
         }
     }
@@ -52,10 +60,16 @@ public class TeacherServiceImpl implements TeacherService{
     
     @Override
     public void delete(int no) {
-        if(teacherDao.delete(no) ==0) {
-            throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+        TransactionManager txManager = TransactionManager.getInstance();
+        try {
+            if(teacherDao.delete(no) ==0) {
+                throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+            }
+            photoDao.delete(no);
+            memberDao.delete(no);
+        }catch(Exception e) {
+            try{txManager.rollback();}catch(Exception e2) {}
+            throw new RuntimeException(e);
         }
-        photoDao.delete(no);
-        memberDao.delete(no);
     }
 }

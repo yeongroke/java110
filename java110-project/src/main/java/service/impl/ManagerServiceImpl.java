@@ -5,6 +5,7 @@ import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.MemberDao;
 import bitcamp.java110.cms.dao.PhotoDao;
 import bitcamp.java110.cms.domain.Manager;
+import bitcamp.java110.cms.util.TransactionManager;
 import service.ManagerService;
 
 public class ManagerServiceImpl implements ManagerService{
@@ -12,7 +13,7 @@ public class ManagerServiceImpl implements ManagerService{
     MemberDao memberDao;
     ManagerDao managerDao;
     PhotoDao photoDao;
-    
+
     public void setMemberDao(MemberDao memberDao) {
         this.memberDao = memberDao;
     }
@@ -28,34 +29,50 @@ public class ManagerServiceImpl implements ManagerService{
     @Override
     public void add(Manager manager) {
         // 매니저 등록과 관련된 업무는 Service 객체에서 처리한다.
+
+        TransactionManager txManager = TransactionManager.getInstance();
         try {
+            txManager.startTransaction();
+
             memberDao.insert(manager);
             managerDao.insert(manager);
-            
+
             if(manager.getPhoto() !=null) {
-            photoDao.insert(manager.getNo(), manager.getPhoto());
+                photoDao.insert(manager.getNo(), manager.getPhoto());
             }
         }catch(Exception e) {
+            try {
+                txManager.commit();
+            }catch(Exception e2) {}
+            try{txManager.rollback();}catch(Exception e2) {}
             throw new RuntimeException(e);
         }
     }
-    
+
     @Override
     public List<Manager> list() {
         return managerDao.findAll();
     }
-    
+
     @Override
     public Manager get(int no) {
         return managerDao.findByNo(no);
     }
-    
+
     @Override
     public void delete(int no) {
-        if(managerDao.delete(no) ==0) {
-            throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+        TransactionManager txManager = TransactionManager.getInstance();
+        try {
+            if(managerDao.delete(no) ==0) {
+                throw new RuntimeException("해당 번호의 데이터가 없습니다.");
+            }
+            photoDao.delete(no);
+            memberDao.delete(no);
+            
+            txManager.commit();
+        }catch(Exception e) {
+            try{txManager.rollback();}catch(Exception e2) {}
+            throw new RuntimeException(e);
         }
-        photoDao.delete(no);
-        memberDao.delete(no);
     }
 }

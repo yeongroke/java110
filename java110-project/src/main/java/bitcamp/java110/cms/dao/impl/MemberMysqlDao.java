@@ -21,7 +21,6 @@ public class MemberMysqlDao implements MemberDao {
         Statement stmt = null;
         
         Connection con = null;
-        
         try {
             con = dataSource.getConnection();
 
@@ -48,6 +47,7 @@ public class MemberMysqlDao implements MemberDao {
             
         } finally {
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
     
@@ -66,6 +66,7 @@ public class MemberMysqlDao implements MemberDao {
             throw new DaoException(e);
         } finally {
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
     

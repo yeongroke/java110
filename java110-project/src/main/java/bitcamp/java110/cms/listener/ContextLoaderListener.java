@@ -11,6 +11,7 @@ import bitcamp.java110.cms.dao.impl.PhotoMysqlDao;
 import bitcamp.java110.cms.dao.impl.StudentMysqlDao;
 import bitcamp.java110.cms.dao.impl.TeacherMysqlDao;
 import bitcamp.java110.cms.util.DataSource;
+import bitcamp.java110.cms.util.TransactionManager;
 import service.impl.AuthServiceImpl;
 import service.impl.ManagerServiceImpl;
 import service.impl.StudentServiceImpl;
@@ -32,6 +33,8 @@ public class ContextLoaderListener implements ServletContextListener {
                     sc.getInitParameter("jdbc.url"),
                     sc.getInitParameter("jdbc.username"),
                     sc.getInitParameter("jdbc.password"));
+            TransactionManager txManager = TransactionManager.getInstance();
+            txManager.setDataSource(dataSource);
             
             // DAO 객체 생성 및 DB 커네션풀 주입하기
             MemberMysqlDao memberDao = new MemberMysqlDao();
