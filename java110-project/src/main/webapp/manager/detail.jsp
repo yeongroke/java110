@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Manager"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -14,8 +13,8 @@
 table, th, td {
     border: 1px solid gray;
 }
-#photo-image{
-    height:100px;
+#photo-image {
+    height: 100px;
 }
 </style>
 </head>
@@ -34,13 +33,13 @@ table, th, td {
 <tr><th>전화</th><td>${manager.tel}</td></tr>
 <tr><th>직위</th><td>${manager.position}</td></tr>
 <tr>
-<th>사진</th>
+    <th>사진</th>
 <c:choose>
-    <c:when test="${not empty manager.photo }">
-<td><img id='photo-image' src='/upload/${manager.photo }'></td>
+<c:when test="${not empty manager.photo}">
+    <td><img id='photo-image' src='/upload/${manager.photo}'></td>
 </c:when>
 <c:otherwise>
-<td><img id='photo-image' src='/img/사진1.jpg'></td>
+    <td><img id='photo-image' src='/img/anonymous.png'></td>
 </c:otherwise>
 </c:choose>
 </tr>

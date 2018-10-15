@@ -2,6 +2,7 @@ package bitcamp.java110.cms.servlet.manager;
 
 import java.io.IOException;
 import java.util.UUID;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,8 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
 import bitcamp.java110.cms.domain.Manager;
-import service.ManagerService;
+import bitcamp.java110.cms.service.ManagerService;
 
 @MultipartConfig(maxFileSize=2_000_000)
 @WebServlet("/manager/add")
@@ -21,7 +23,7 @@ public class ManagerAddServlet extends HttpServlet {
     @Override
     protected void doGet(
             HttpServletRequest request, 
-            HttpServletResponse  response) 
+            HttpServletResponse response) 
                     throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
@@ -50,8 +52,9 @@ public class ManagerAddServlet extends HttpServlet {
         m.setTel(request.getParameter("tel"));
         m.setPosition(request.getParameter("position"));
         
-        ManagerService managerService = (ManagerService)this.getServletContext()
-                .getAttribute("managerService");
+        ManagerService managerService = 
+                (ManagerService)this.getServletContext()
+                                    .getAttribute("managerService");
         
         try {
             // 사진 데이터 처리

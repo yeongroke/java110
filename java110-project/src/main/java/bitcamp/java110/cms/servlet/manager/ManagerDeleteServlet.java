@@ -1,12 +1,14 @@
 package bitcamp.java110.cms.servlet.manager;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import service.ManagerService;
+
+import bitcamp.java110.cms.service.ManagerService;
 
 @WebServlet("/manager/delete")
 public class ManagerDeleteServlet extends HttpServlet { 
@@ -21,8 +23,9 @@ public class ManagerDeleteServlet extends HttpServlet {
         int no = Integer.parseInt(request.getParameter("no"));
         
         
-        ManagerService managerService = (ManagerService)this.getServletContext()
-                .getAttribute("managerService");
+        ManagerService managerService = 
+                (ManagerService)this.getServletContext()
+                                    .getAttribute("managerService");
         
         try {
             managerService.delete(no);

@@ -2,6 +2,7 @@ package bitcamp.java110.cms.servlet.student;
 
 import java.io.IOException;
 import java.util.UUID;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,8 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
 import bitcamp.java110.cms.domain.Student;
-import service.StudentService;
+import bitcamp.java110.cms.service.StudentService;
 
 @MultipartConfig(maxFileSize=2_000_000)
 @WebServlet("/student/add")
@@ -52,6 +54,7 @@ public class StudentAddServlet extends HttpServlet {
                 .getAttribute("studentService");
         
         try {
+            // 사진 데이터 처리
             Part part = request.getPart("file1");
             if (part.getSize() > 0) {
                 String filename = UUID.randomUUID().toString();

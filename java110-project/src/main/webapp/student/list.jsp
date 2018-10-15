@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Student"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -29,9 +28,7 @@ table, th, td {
 </tr>
 </thead>
 <tbody>
-
-<c:forEach items="${list}" var="s">
-
+<c:forEach  items="${list}" var="s">
 <tr>
     <td>${s.no}</td>
     <td><a href='detail?no=${s.no}'>${s.name}</a></td>
@@ -43,6 +40,7 @@ table, th, td {
 
 </tbody>
 </table>
+
 <jsp:include page="../footer.jsp"/>
 
 </body>

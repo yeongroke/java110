@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boarddao">
+
+  <!-- 컬럼명과 자바 객체의 프로퍼티명이 다를 경우,
+       컬럼명에 대해 프로퍼티 이름과 같게 별명을 지정해야만 
+       제대로 DB 컬럼 값이 객체에 저장된다.
+       그러나 매번 select를 실행할 때마다 컬럼에 대해 별명을 지정하는 것은 
+       매우 불편하고 번거로운 일이다. 이를 해결하기 위해 다음 태그를 사용한다.
+       즉. 컬럼과 프로퍼티를 맺어주는 선언이다.-->
+<!-- 하지만 여기서 키가 프로머티키라면 result말고 id로 해야한다. -->
+<resultMap type="board" id="boardMap">
+    <id column="bno" property="no"/>
+    <result column="titl" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="cnt" property="viewCount"/>
+    <result column="cdt" property="createDate"/>
+    <result column="mno" property="memberNo"/>
+    <result column="name" property="writer"/>
+</resultMap>
+<!-- association 은 값이 한개일때 
+collection 은 join해서 값이 여러개일때 -->
+<resultMap type="board" id="boardMap2">
+    <id column="bno" property="no"/>
+    <result column="titl" property="title"/>
+    <result column="cont" property="content"/>
+    <result column="cnt" property="viewCount"/>
+    <result column="cdt" property="createDate"/>
+    <association property="member" javaType="member">
+    <id column="mno" property="no"/>
+    <result column="name" property="name"/>
+    <result column="email" property="email"/>
+    <result column="tel" property="tel"/>
+    </association>
+    <collection property="attachFiles" ofType="attachfile">
+        <id column="afno" property="no"/>
+        <result column="fi_nm" property="filename"/>
+    </collection>
+</resultMap>
+
+
+<!-- 여러 곳에서 공통으로 사용하는 SQL 문이 있다면
+다음과 같이 별도로 정의해 놓고 필요한 곳에서 삽입한다. -->
+
+  <!-- SQL을 작성할 SQL의 id는 가능한 DAO의 메서드명과 같게 하라!
+       나중에 유지보수할 때 찾기 쉽다.  ? 대신에 #{Member 객체에 들어있는 프로퍼티명} 
+       프로퍼티명은 name ,no이런걸 말함 get set에 들어가는거
+       ${} 여기서는 이거 달러표시를 쓰면안됨 이유는 : input이랑 받아들이는것이 안전하지가 않아서.-->
+       <!-- join에서 on을 쓸 때는  컬럼이름이 서로 다를때 쓴다
+       using은 컬럼명이 같을 때 쓴다 예시는 아래에 나와있음-->
+  <select id="findAll" resultMap="boardMap" parameterType="map">
+    select 
+    b.bno
+    , b.titl
+    , b.cnt
+    , b.cdt
+    , b.mno
+    , m.name
+    from p1_board b
+    inner join p1_memb m using (mno)
+    limit #{rowNo}, #{pageSize}
+  </select>
+  
+  <select id="findByNo" resultMap="boardMap2" parameterType="int">
+    select 
+        b.bno, 
+        b.titl,
+        b.cont, 
+        b.cnt, 
+        b.cdt, 
+        b.mno, 
+        m.name,
+        m.email, 
+        m.tel, 
+        af.afno, 
+        af.fi_nm
+    from p1_board b
+    inner join p1_memb m using (mno)
+    left outer join p1_att_file af using (bno)
+    where b.bno=#{value}
+  </select>
+  
+  <insert id="insert" parameterType="board"
+        useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
+    insert into p1_board(titl,cont,cnt,cdt,mno) 
+    values(#{title},#{content},0,now(),#{memberNo})
+  </insert>
+  
+  <!-- 프로모티브 타입은 프로퍼티명을 아무렇게 써도 됨. -->
+  <delete id="delete" parameterType="int">
+   delete from p1_board where mno=#{value}
+  </delete>
+  
+  <select id="findAttachFiles" resultType="attachfile" parameterType="int">
+    select
+        afno no
+        , fi_nm filename
+        , bno boardNo
+    from p1_att_file
+    where bno=#{value}
+  </select>
+</mapper>

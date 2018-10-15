@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 
 public class DataSource {
-
+    
     String url;
     String username;
     String password;
+    
     ArrayList<Connection> connections = new ArrayList<>();
-
+    
     ThreadLocal<Connection> local = new ThreadLocal<>();
     
     public DataSource(
@@ -18,13 +19,13 @@ public class DataSource {
             String url, 
             String username, 
             String password) throws Exception {
-
+        
         Class.forName(driver);
         this.url = url;
         this.username = username;
         this.password = password;
     }
-    // dao 가 사용할 connection
+    
     public Connection getConnection() throws Exception {
         Connection con = local.get();
         if (con != null) {
@@ -33,23 +34,24 @@ public class DataSource {
             return getConnection(false);
         }
     }
-    //  사용할 connection
+    
     public Connection getConnection(boolean useTransaction) throws Exception {
-
         Connection con = null;
-        while(connections.size() > 0) {
+        while (connections.size() > 0) {
             con = connections.remove(0);
-            if(!con.isClosed() && con.isValid(3)) {
-                System.out.println("기존 커넥션 사용! !");
+            if (!con.isClosed() && con.isValid(3)) {
+                System.out.println("기존 커넥션 사용!");
                 break;
             }
             con = null;
         }
-        if(con == null) {
+        
+        if (con == null) {
             System.out.println("새 커넥션 사용!");
-            return DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, username, password);
         }
-        if(useTransaction) {
+        
+        if (useTransaction) {
             con.setAutoCommit(false);
             local.set(con);
         } else {
@@ -58,18 +60,27 @@ public class DataSource {
         
         return con;
     }
-
+    
     public void returnConnection(Connection con) {
-            returnConnection(con, false);
+        returnConnection(con, false);
     }
     
-    public void returnConnection(Connection con , boolean useTransaction) {
-        if(useTransaction) {
+    public void returnConnection(Connection con, boolean useTransaction) {
+        if (useTransaction) {
             local.remove();
         }
-        if( local.get() == null) {
+        if (local.get() == null) {
             // 트랜잭션으로 사용하는 커넥션이 아닌 경우에만 커넥션풀에 반납한다.
             connections.add(con);
         }
     }
 }
+
+
+
+
+
+
+
+
+

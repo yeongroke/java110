@@ -36,3 +36,36 @@ insert into p1_tchr(tno,hrpay,subj) values(8,14000,'c,c++,안드로이드');
 insert into p1_mgr(mrno,posi) values(9,'대리');
 insert into p1_mgr(mrno,posi) values(10,'과장');
 
+-- 게시물
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목1','제목1',0,now(),1);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목2','제목2',0,now(),1);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목3','제목3',0,now(),1);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목4','제목4',0,now(),2);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목5','제목5',0,now(),2);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목6','제목6',0,now(),4);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목7','제목7',0,now(),4);
+
+insert into p1_board(titl,cont,cnt,cdt,mno)
+values('제목8','제목8',0,now(),4);
+
+-- 게시물 첨부 파일
+insert into p1_att_file(fi_nm,bno) values('file1.txt',1);
+insert into p1_att_file(fi_nm,bno) values('file2.txt',1);
+insert into p1_att_file(fi_nm,bno) values('file3.txt',2);
+insert into p1_att_file(fi_nm,bno) values('file4.txt',3);
+insert into p1_att_file(fi_nm,bno) values('file5.txt',3);
+insert into p1_att_file(fi_nm,bno) values('file6.txt',5);
+insert into p1_att_file(fi_nm,bno) values('file7.txt',8);

@@ -1,14 +1,16 @@
 package bitcamp.java110.cms.servlet.student;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import bitcamp.java110.cms.domain.Student;
-import service.StudentService;
+import bitcamp.java110.cms.service.StudentService;
 
 @WebServlet("/student/detail")
 public class StudentDetailServlet extends HttpServlet {

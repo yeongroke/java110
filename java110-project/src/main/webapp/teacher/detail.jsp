@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Teacher"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -14,8 +13,8 @@
 table, th, td {
     border: 1px solid gray;
 }
-#photo-image{
-    height:100px;
+#photo-image {
+    height: 100px;
 }
 </style>
 </head>
@@ -30,18 +29,18 @@ table, th, td {
 <tr><th>번호</th><td>${teacher.no}</td></tr>
 <tr><th>이름</th><td>${teacher.name}</td></tr>
 <tr><th>이메일</th><td>${teacher.email}</td></tr>
-<tr><th>암호</th><td>${teacher.password}></td></tr>
+<tr><th>암호</th><td>${teacher.password}</td></tr>
 <tr><th>전화</th><td>${teacher.tel}</td></tr>
 <tr><th>강의료</th><td>${teacher.pay}</td></tr>
 <tr><th>강의과목</th><td>${teacher.subjects}</td></tr>
 <tr>
-<th>사진</th>
+    <th>사진</th>
 <c:choose>
-    <c:when test="${not empty teacher.photo }">
-<td><img id='photo-image' src='/upload/${teacher.photo }'></td>
+<c:when test="${not empty teacher.photo}">
+    <td><img id='photo-image' src='/upload/${teacher.photo}'></td>
 </c:when>
 <c:otherwise>
-<td><img id='photo-image' src='/img/사진1.jpg'></td>
+    <td><img id='photo-image' src='/img/anonymous.png'></td>
 </c:otherwise>
 </c:choose>
 </tr>

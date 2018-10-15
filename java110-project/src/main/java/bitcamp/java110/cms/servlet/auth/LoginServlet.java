@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.servlet.auth;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import bitcamp.java110.cms.domain.Member;
-import service.AuthService;
+import bitcamp.java110.cms.service.AuthService;
 
 @WebServlet("/auth/login")
 public class LoginServlet extends HttpServlet {
@@ -21,19 +23,6 @@ public class LoginServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) 
                     throws ServletException, IOException {
-        
-        // 쿠키 데이터에 email 이 있다면 꺼낸다.
-        String email = "";
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("email")) {
-                    email = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        request.setAttribute("email", email);
         
         response.setContentType("text/html;charset=UTF-8");
         
@@ -65,9 +54,11 @@ public class LoginServlet extends HttpServlet {
             response.addCookie(cookie);
         }
         
-        AuthService authService = (AuthService)this.getServletContext().getAttribute("authService");
+        AuthService authService = 
+                (AuthService)this.getServletContext()
+                                 .getAttribute("authService");
         
-        Member loginUser = authService.get(email,password,type);
+        Member loginUser = authService.getMember(email, password, type);
         
         HttpSession session = request.getSession();
         if (loginUser != null) {
