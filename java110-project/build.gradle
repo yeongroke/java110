@@ -18,7 +18,7 @@ tasks.withType(JavaCompile) {
       targetCompatibility = '1.8' 
   } 
 
-dependencies { 
+dependencies {
 //프로젝트에서 사용할 라이브러리 등록(설정)하는 공간
 //=> 라이브러리 정보는 mvnrepository.com에서 검색하여 가져온다.
 // https://mvnrepository.com/artifact/org.mybatis/mybatis

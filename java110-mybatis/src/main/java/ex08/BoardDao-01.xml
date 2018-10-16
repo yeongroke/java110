@@ -54,12 +54,12 @@ collection 은 join해서 값이 여러개일때 -->
        using은 컬럼명이 같을 때 쓴다 예시는 아래에 나와있음-->
   <select id="findAll" resultMap="boardMap" parameterType="map">
     select 
-    b.bno
-    , b.titl
-    , b.cnt
-    , b.cdt
-    , b.mno
-    , m.name
+    b.bno, 
+    b.titl, 
+    b.cnt, 
+    b.cdt, 
+    b.mno, 
+    m.name
     from p1_board b
     inner join p1_memb m using (mno)
     limit #{rowNo}, #{pageSize}
@@ -97,9 +97,9 @@ collection 은 join해서 값이 여러개일때 -->
   
   <select id="findAttachFiles" resultType="attachfile" parameterType="int">
     select
-        afno no
-        , fi_nm filename
-        , bno boardNo
+        afno no, 
+        fi_nm filename, 
+        bno boardNo
     from p1_att_file
     where bno=#{value}
   </select>
