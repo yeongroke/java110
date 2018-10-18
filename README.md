@@ -338,3 +338,32 @@
 - 작업
     - 트랜잭션을 위해 DataSource의 Connection을 관리하는 클래스를 작성한다.
     - DataSource는 트랜잭션을 사용할 때와 아닐 때의 다룬다.
+
+## java110-project (tag: v5.6)
+   
+- Statement를 PreparedStatement로 변경하기
+    - SQL 삽입 해킹을 방지하기
+- 작업
+    - 로그인 방어막을 뚫기를 통해 보안 문제 확인
+    - DAO의 모든 SQL문을 PreparedStatement로 교체한다.
+
+## java110-project (tag: v5.7)
+   
+- Mybatis persistence framework 적용하기
+- 작업
+    - build.gradle에 mybatis 라이브러리 등록
+    - 'gradle eclipse' 실행
+    - 이클립스 프로젝트 리프래시
+    - DAO, Service, Servlet 변경
+    - ContextLoaderListener 변경
+
+## java110-project (tag: v5.8)
+   
+- Mybatis에서 자동으로 생성해주는 Mapper(DAO) 객체 사용하기
+- Mybatis에서 트랜잭션 다루기
+- 작업
+    - 기존 DAO 구현체를 모두 제거한다.
+    - Service 객체에 SqlSessionFactory를 주입한다.
+    - Service 객체는 SqlSessionFactory를 통해 DAO를 얻어 쓴다.
+    - insert, delete 메서드에 트랜잭션을 적용한다.
+    - ContextLoaderListener 변경
