@@ -91,7 +91,7 @@ public class Car {
     }
     
     // 해당 의존 객체가 없으면 스프링 IoC 컨테이너는 예외를 발생시킨다. 의존객체는 여기서 app-context에서 값넣은걸 말함
-    @Autowired(required=false)  
+    @Autowired(required=false)
     public void setEngine(Engine engine) {
         this.engine = engine;
     }

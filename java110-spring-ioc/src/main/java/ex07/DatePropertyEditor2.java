@@ -1,7 +1,6 @@
 package ex07;
 
 import java.beans.PropertyEditorSupport;
-import java.sql.Date;
 
 // String ==> java.sql.Date 프로퍼티 값 변환기
 //

@@ -46,7 +46,6 @@ public class Test02_p4 {
                 return false;
             return true;
         }
-        
     }
     
     public static void main(String[] args) {
