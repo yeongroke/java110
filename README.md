@@ -367,3 +367,24 @@
     - Service 객체는 SqlSessionFactory를 통해 DAO를 얻어 쓴다.
     - insert, delete 메서드에 트랜잭션을 적용한다.
     - ContextLoaderListener 변경
+
+## java110-project (tag: v5.9)
+
+- Spring IoC 컨테이너 적용
+- 작업
+    - Spring IoC 컨테이너 라이브러리 추가
+    - ContextLoaderListener 변경
+    - Service와 DAO를 Spring IoC 컨테이너에서 관리하도록 변경
+
+## java110-project (tag: v6.0)
+
+- Mybatis와 Spring IoC 컨테이너 연동
+- 작업
+    - mybatis-spring 연동 라이브러리 가져오기
+    - build.gradle 에 라이브러리 정보 등록
+    - 'gradle eclipse' 실행
+    - 이클립스 프로젝트 리프래시
+- mybatis-spring 문서 참고하여 스프링 설정하기
+    - mybatis.org 사이트 -> github.com => spring 저장소=> 문서
+    - 즐겨 찾기에 등록
+-  jdc
