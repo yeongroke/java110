@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="s1" class="mytest01.Store">
+        <property name="count" value="2"/>
+        <property name="locati" value="seoul"/>
+        <property name="goods" value="ramen"/>
+    </bean>
+
+    <bean id="c1" class="mytest01.Comp">
+        <constructor-arg type="java.lang.String" value="kim" index="0"/>
+        <constructor-arg type="int" value="100"/>
+    </bean>
+    
+    <bean id="s2" class="mytest01.Store">
+        <property name="count" value="5"/>
+        <property name="locati" value="seong-nam"/>
+        <property name="goods" value="meat"/>
+        <property name="comp"><ref bean="c1"/></property> 
+    </bean>
+    
+    <bean id="s3" class="mytest01.Store">
+        <property name="count" value="7"/>
+        <property name="locati" value="jeju"/>
+        <property name="goods" value="rice"/>
+        <property name="comp">
+            <bean class="mytest01.Comp">
+                <property name="name" value="park"/>
+                <property name="work" value="100su"/>
+                <property name="pay" value="20"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean id="s4" class="mytest01.Store">
+        <property name="count" value="15"/>
+        <property name="locati" value="yatap"/>
+        <property name="goods" value="milk"/>
+        <property name="goodname">
+            <list>
+                <value>k1</value>
+                <value>k2</value>
+                <value>k3</value>
+            </list>
+        </property>
+        <property name="comp"><ref bean="c1"></ref></property>
+    </bean>
+    
+    <bean id="f1" class="mytest01.StoreFactory"/>
+    
+    <bean id="s5" factory-bean="f1" factory-method="create">
+        <constructor-arg><value>meat</value></constructor-arg>
+    </bean>
+    
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.sql.Date" value="mytest01.CompPropertyEditor"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="c2" class="mytest01.Comp">
+        <property name="name" value="park"/>
+        <property name="work" value="100su"/>
+        <property name="pay" value="20"/>
+        <property name="join" value="2018-07-06"/>
+    </bean>
+    
+    
+</beans>

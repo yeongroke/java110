@@ -24,20 +24,21 @@ public class ManagerDeleteServlet extends HttpServlet {
         
         int no = Integer.parseInt(request.getParameter("no"));
         
-        ApplicationContext iocContainer = (ApplicationContext)this.getServletContext()
-                .getAttribute("iocContainer");
-        ManagerService managerService = iocContainer.getBean(ManagerService.class);
+        ApplicationContext iocContainer = 
+                (ApplicationContext)this.getServletContext()
+                                        .getAttribute("iocContainer");
+        ManagerService managerService = 
+                iocContainer.getBean(ManagerService.class);
         
         try {
             managerService.delete(no);
-            response.sendRedirect("list");
+            request.setAttribute("viewUrl", "redirect:list");
             
         } catch (Exception e) {
             request.setAttribute("error", e);
             request.setAttribute("message", "매니저 삭제 오류!");
             request.setAttribute("refresh", "3;url=list");
-            
-            request.getRequestDispatcher("/error").forward(request, response);
+            request.setAttribute("viewUrl", "/error.jsp");
         }
         
     }

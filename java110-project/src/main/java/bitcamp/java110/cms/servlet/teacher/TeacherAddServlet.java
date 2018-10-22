@@ -28,12 +28,7 @@ public class TeacherAddServlet extends HttpServlet {
             HttpServletResponse response) 
                     throws ServletException, IOException {
         
-        response.setContentType("text/html;charset=UTF-8");
-        
-        // form.jsp 인클루딩
-        RequestDispatcher rd = request.getRequestDispatcher(
-                "/teacher/form.jsp");
-        rd.include(request, response);
+        request.setAttribute("viewUrl", "/teacher/form.jsp");
     }
     
     @Override
@@ -52,9 +47,11 @@ public class TeacherAddServlet extends HttpServlet {
         t.setPay(Integer.parseInt(request.getParameter("pay")));
         t.setSubjects(request.getParameter("subjects"));
         
-        ApplicationContext iocContainer = (ApplicationContext)this.getServletContext()
-                .getAttribute("iocContainer");
-        TeacherService teacherService = iocContainer.getBean(TeacherService.class);
+        ApplicationContext iocContainer = 
+                (ApplicationContext)this.getServletContext()
+                                        .getAttribute("iocContainer");
+        TeacherService teacherService = 
+                iocContainer.getBean(TeacherService.class);
         
         try {
             // 사진 데이터 처리
@@ -67,14 +64,13 @@ public class TeacherAddServlet extends HttpServlet {
             }
             
             teacherService.add(t);
-            response.sendRedirect("list");
+            request.setAttribute("viewUrl", "redirect:list");
             
         } catch(Exception e) {
             request.setAttribute("error", e);
             request.setAttribute("message", "강사 등록 오류!");
             request.setAttribute("refresh", "3;url=list");
-            
-            request.getRequestDispatcher("/error").forward(request, response);
+            request.setAttribute("viewUrl", "/error.jsp");
         }
         
     }

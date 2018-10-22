@@ -388,3 +388,16 @@
     - mybatis.org 사이트 -> github.com => spring 저장소=> 문서
     - 즐겨 찾기에 등록
 -  jdc
+
+## java110-project (tag: v6.1)
+
+- Front Controller 도입
+    - Farcade 디자인 패턴 적용
+- 작업
+    - 컨트롤러의 공통 기능을 분리하여 DispatcherSerlvet에서 처리한다.
+    - 이전 서블릿에서 했떤 redirect, include를 프론트 컨트롤러에게 넘긴다.
+
+## java110-project (tag: v6.2)
+
+- Page Controller를 POJO로 전환
+    - Spring Ioc Container

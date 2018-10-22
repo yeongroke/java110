@@ -24,22 +24,21 @@ public class TeacherDeleteServlet extends HttpServlet {
 
         int no = Integer.parseInt(request.getParameter("no"));
         
-        ApplicationContext iocContainer = (ApplicationContext)this.getServletContext()
-                .getAttribute("iocContainer");
-        TeacherService teacherService = iocContainer.getBean(TeacherService.class);
+        ApplicationContext iocContainer = 
+                (ApplicationContext)this.getServletContext()
+                                        .getAttribute("iocContainer");
+        TeacherService teacherService = 
+                iocContainer.getBean(TeacherService.class);
         
         try {
             teacherService.delete(no);
-            response.sendRedirect("list");
+            request.setAttribute("viewUrl", "redirect:list");
             
         } catch (Exception e) {
             request.setAttribute("error", e);
             request.setAttribute("message", "강사 삭제 오류!");
             request.setAttribute("refresh", "3;url=list");
-            
-            request.getRequestDispatcher("/error").forward(request, response);
+            request.setAttribute("viewUrl", "/error.jsp");
         }
-        
     }
-
 }

@@ -24,34 +24,32 @@ public class StudentListServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) 
             throws ServletException, IOException {
-        
+
         int pageNo = 1;
         int pageSize = 3;
         
-        if(request.getParameter("pageNo") != null) {
+        if (request.getParameter("pageNo") != null) {
             pageNo = Integer.parseInt(request.getParameter("pageNo"));
-            if(pageNo < 1)
+            if (pageNo < 1)
                 pageNo = 1;
         }
         
-        if(request.getParameter("pageSize") != null) {
+        if (request.getParameter("pageSize") != null) {
             pageSize = Integer.parseInt(request.getParameter("pageSize"));
-            if(pageSize < 3 || pageSize > 10)
+            if (pageSize < 3 || pageSize > 10)
                 pageSize = 3;
         }
         
-        ApplicationContext iocContainer = (ApplicationContext)this.getServletContext()
-                .getAttribute("iocContainer");
-        StudentService studentService = iocContainer.getBean(StudentService.class);
+        ApplicationContext iocContainer = 
+                (ApplicationContext)this.getServletContext()
+                                        .getAttribute("iocContainer");
+        StudentService studentService = 
+                iocContainer.getBean(StudentService.class);
         
-        List<Student> list = studentService.list(pageNo,pageSize);
+        List<Student> list = studentService.list(pageNo, pageSize);
         request.setAttribute("list", list);
         
-        response.setContentType("text/html;charset=UTF-8");
-        
-        RequestDispatcher rd = request.getRequestDispatcher(
-                "/student/list.jsp");
-        rd.include(request, response);
+        request.setAttribute("viewUrl", "/student/list.jsp");
         
     }
 }

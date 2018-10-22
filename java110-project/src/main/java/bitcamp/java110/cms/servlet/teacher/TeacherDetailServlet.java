@@ -26,18 +26,16 @@ public class TeacherDetailServlet extends HttpServlet {
 
         int no = Integer.parseInt(request.getParameter("no"));
         
-        ApplicationContext iocContainer = (ApplicationContext)this.getServletContext()
-                .getAttribute("iocContainer");
-        TeacherService teacherService = iocContainer.getBean(TeacherService.class);
+        ApplicationContext iocContainer = 
+                (ApplicationContext)this.getServletContext()
+                                        .getAttribute("iocContainer");
+        TeacherService teacherService = 
+                iocContainer.getBean(TeacherService.class);
         
         Teacher t = teacherService.get(no);
         request.setAttribute("teacher", t);
         
-        response.setContentType("text/html;charset=UTF-8");
-
-        RequestDispatcher rd = request.getRequestDispatcher(
-                "/teacher/detail.jsp");
-        rd.include(request, response);
+        request.setAttribute("viewUrl", "/teacher/detail.jsp");
     }
 
 }
