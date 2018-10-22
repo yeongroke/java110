@@ -1,26 +1,29 @@
-package bitcamp.java110.cms.web.manager;
+package bitcamp.java110.cms.web.teacher;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import bitcamp.java110.cms.domain.Manager;
+
+import bitcamp.java110.cms.domain.Teacher;
 import bitcamp.java110.cms.mvc.RequestMapping;
-import bitcamp.java110.cms.service.ManagerService;
+import bitcamp.java110.cms.service.TeacherService;
 
 @Component
-public class ManagerListController { 
+public class TeacherListController {
     
     @Autowired
-    ManagerService managerService;
+    TeacherService teacherService;
     
-    @RequestMapping("/manager/list")
+    @RequestMapping("/teacher/list")
     public String list(
             HttpServletRequest request, 
-            HttpServletResponse response) { 
-            
-        
+            HttpServletResponse response) 
+            throws Exception {
+
         int pageNo = 1;
         int pageSize = 3;
         
@@ -36,16 +39,9 @@ public class ManagerListController {
                 pageSize = 3;
         }
         
-        List<Manager> list = managerService.list(pageNo, pageSize);
-        
+        List<Teacher> list = teacherService.list(pageNo, pageSize);
         request.setAttribute("list", list);
-        return "/manager/list.jsp";
+        
+        return "/teacher/list.jsp";
     }
 }
-
-
-
-
-
-
-

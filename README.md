@@ -401,3 +401,7 @@
 
 - Page Controller를 POJO로 전환
     - Spring Ioc Container
+
+## java110-project (tag: v6.3)
+
+- PageController 인터페이스 대신 애노테이션을 사용하여 페이지 컨트롤러의 메서드를
