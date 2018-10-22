@@ -1,5 +1,8 @@
-package bitcamp.java110.cms.web.auth;
+package bitcamp.java110.cms.web;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +16,7 @@ import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.AuthService;
 
 @Component
-public class LoginController {
+public class AuthController {
 
     @Autowired
     AuthService authService;
@@ -69,6 +72,20 @@ public class LoginController {
             session.invalidate();
             return "redirect:login";
         }
+    }
+    
+    @RequestMapping("/auth/logout")
+    public String logout(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
+        // 현재 세션 객체를 무효화시킨다.
+        session.invalidate();
+        
+        return"redirect:login";
     }
 }
 
