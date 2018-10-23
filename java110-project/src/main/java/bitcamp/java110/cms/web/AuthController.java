@@ -1,16 +1,13 @@
 package bitcamp.java110.cms.web;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import bitcamp.java110.cms.domain.Member;
 import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.AuthService;
@@ -24,7 +21,8 @@ public class AuthController {
     @RequestMapping("/auth/login")
     public String login(
             HttpServletRequest request, 
-            HttpServletResponse response) {
+            HttpServletResponse response
+            ,HttpSession session) {
         
         if(request.getMethod().equals("GET")) {
             return "/auth/form.jsp";
@@ -47,7 +45,6 @@ public class AuthController {
         
         Member loginUser = authService.getMember(email, password, type);
         
-        HttpSession session = request.getSession();
         if (loginUser != null) {
             // 회원 정보를 세션에 보관한다.
             session.setAttribute("loginUser", loginUser);
@@ -75,16 +72,11 @@ public class AuthController {
     }
     
     @RequestMapping("/auth/logout")
-    public String logout(
-            HttpServletRequest request, 
-            HttpServletResponse response) 
+    public String logout(HttpSession session) 
                     throws ServletException, IOException {
-        
-        HttpSession session = request.getSession();
         
         // 현재 세션 객체를 무효화시킨다.
         session.invalidate();
-        
         return"redirect:login";
     }
 }

@@ -17,6 +17,8 @@ public class ContextLoaderListener implements ServletContextListener {
         ServletContext sc = sce.getServletContext();
 
         try {
+            AppConfig.sc = sce.getServletContext();
+            
             ApplicationContext context = 
                     new AnnotationConfigApplicationContext(AppConfig.class);
             

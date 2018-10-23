@@ -2,11 +2,12 @@ package bitcamp.java110.cms.web;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import bitcamp.java110.cms.domain.Teacher;
 import bitcamp.java110.cms.mvc.RequestMapping;
+import bitcamp.java110.cms.mvc.RequestParam;
 import bitcamp.java110.cms.service.TeacherService;
 
 @Component
@@ -22,85 +24,60 @@ public class TeacherController {
     @Autowired
     TeacherService teacherService;
     
+    @Autowired
+    ServletContext sc;
+    
     @RequestMapping("/teacher/list")
-    public String list(
-            HttpServletRequest request, 
-            HttpServletResponse response) 
+    public String list(Map<String, Object> map,
+            @RequestParam(value="pageNo",defaultValue="1") int pageNo,
+            @RequestParam(value="pageSize",defaultValue="3") int pageSize) 
             throws Exception {
 
-        int pageNo = 1;
-        int pageSize = 3;
-        
-        if (request.getParameter("pageNo") != null) {
-            pageNo = Integer.parseInt(request.getParameter("pageNo"));
             if (pageNo < 1)
                 pageNo = 1;
-        }
-        
-        if (request.getParameter("pageSize") != null) {
-            pageSize = Integer.parseInt(request.getParameter("pageSize"));
             if (pageSize < 3 || pageSize > 10)
                 pageSize = 3;
-        }
         
         List<Teacher> list = teacherService.list(pageNo, pageSize);
-        request.setAttribute("list", list);
+        map.put("list", list);
         
         return "/teacher/list.jsp";
     }
     
     @RequestMapping("/teacher/detail")
-    public String detail(
-            HttpServletRequest request, 
-            HttpServletResponse response) 
+    public String detail(Map<String, Object> map,
+            @RequestParam(value="no") int no) 
                     throws ServletException, IOException {
         
-        int no = Integer.parseInt(request.getParameter("no"));
-        
         Teacher t = teacherService.get(no);
-        request.setAttribute("teacher", t);
+        map.put("teacher", t);
         
         return "/teacher/detail.jsp";
     }
 
     @RequestMapping("/teacher/add")
-    public String add(
-            HttpServletRequest request, 
-            HttpServletResponse response) throws Exception {
+    public String add(Teacher teacher,
+            HttpServletRequest request) throws Exception {
         
         if(request.getMethod().equals("GET")) {
         return "/teacher/form.jsp";
         }
-        request.setCharacterEncoding("UTF-8");
-        
-        Teacher t = new Teacher();
-        t.setName(request.getParameter("name"));
-        t.setEmail(request.getParameter("email"));
-        t.setPassword(request.getParameter("password"));
-        t.setTel(request.getParameter("tel"));
-        t.setPay(Integer.parseInt(request.getParameter("pay")));
-        t.setSubjects(request.getParameter("subjects"));
         
             // 사진 데이터 처리
             Part part = request.getPart("file1");
             if (part.getSize() > 0) {
                 String filename = UUID.randomUUID().toString();
-                part.write(request.getServletContext()
-                           .getRealPath("/upload/" + filename));
-                t.setPhoto(filename);
+                part.write(sc.getRealPath("/upload/" + filename));
+                teacher.setPhoto(filename);
             }
-            teacherService.add(t);
+            teacherService.add(teacher);
             return "redirect:list";
     }
     
     
     @RequestMapping("/teacher/delete")
-    public String delete(
-            HttpServletRequest request, 
-            HttpServletResponse response) 
+    public String delete(@RequestParam(value="no") int no) 
                     throws ServletException, IOException {
-
-        int no = Integer.parseInt(request.getParameter("no"));
 
         teacherService.delete(no);
         return "redirect:list";
