@@ -9,13 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.java110.cms.domain.Manager;
-import bitcamp.java110.cms.mvc.RequestMapping;
-import bitcamp.java110.cms.mvc.RequestParam;
 import bitcamp.java110.cms.service.ManagerService;
 
-@Component
+@Controller
 public class ManagerController { 
 
     @Autowired
@@ -45,7 +45,7 @@ public class ManagerController {
 
     @RequestMapping("/manager/detail")
     public String detail(Map<String, Object> map
-            ,@RequestParam(value="no") int no) 
+            ,int no) 
             throws ServletException, IOException {
 
         Manager m = managerService.get(no);
@@ -77,8 +77,8 @@ public class ManagerController {
     }
 
     @RequestMapping("/manager/delete")
-    public String delete(HttpServletRequest request
-            ,@RequestParam(value="no") int no) throws Exception {
+    public String delete(
+            int no) throws Exception {
 
         managerService.delete(no);
         return "redirect:list";

@@ -9,13 +9,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import bitcamp.java110.cms.domain.Student;
-import bitcamp.java110.cms.mvc.RequestMapping;
-import bitcamp.java110.cms.mvc.RequestParam;
 import bitcamp.java110.cms.service.StudentService;
 
-@Component
+@Controller
 public class StudentController {
   
     @Autowired
@@ -44,7 +44,7 @@ public class StudentController {
     
     @RequestMapping("/student/detail")
     public String detail(Map<String, Object> map,
-            @RequestParam(value="no") int no) 
+            int no) 
                     throws ServletException, IOException {
 
         Student s = studentService.get(no);
@@ -75,7 +75,7 @@ public class StudentController {
     }
     
     @RequestMapping("/student/delete")
-    public String delete(@RequestParam(value="no") int no) throws Exception {
+    public String delete(int no) throws Exception {
 
         studentService.delete(no);
         return "redirect:list";

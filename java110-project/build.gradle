@@ -23,16 +23,20 @@ dependencies {
     //mariadb jdbc driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
 
-    //Spring IoC 컨테이너 관련 라이브러리
-    compile group: 'org.springframework', name: 'spring-context', version: '5.1.1.RELEASE'
-    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.1.RELEASE'
-
     //tomcat9
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile group: 'javax.servlet', name: 'jstl', version: '1.2'
     
     // Apache common-dbcp 라이브러리
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+
+    // Spring IoC 컨테이너 관련 라이브러리
+    // => Spring WebMVC를 추가하면 context 라이브러리는 자동으로 추가된다. 
+    //compile group: 'org.springframework', name: 'spring-context', version: '5.1.1.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.1.RELEASE'
+    
+    // Spring WebMVC 라이브러리 
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.1.RELEASE'
 }
 
 repositories {
