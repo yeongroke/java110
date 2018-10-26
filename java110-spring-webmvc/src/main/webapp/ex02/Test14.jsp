@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Test13 페이지 컨트롤러</h1>
+<h1>Test14 페이지 컨트롤러</h1>
 
 [Car]<br>
-model: ${requestScope.car.model}<br>
+model: ${car.model}<br>
 maker: ${car.maker}<br>
 auto: ${car.auto}<br>
 
 [Engine]<br>
-name:${car.engine.name}<br>
-cc:${car.engine.cc}<br>
-valve:${car.engine.valve}<br>
+name: ${car.engine.name}<br>
+cc: ${car.engine.cc}<br>
+valve: ${car.engine.valve}<br>
 </body>
 </html>

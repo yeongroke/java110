@@ -12,5 +12,6 @@
 name: ${requestScope.name}<br>
 age: ${requestScope.age}<br>
 tel: ${requestScope.tel}<br>
+
 </body>
 </html>

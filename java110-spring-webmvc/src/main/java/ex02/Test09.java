@@ -14,12 +14,23 @@ public class Test09 {
     @RequestMapping("m1")
     @ResponseBody
     public String m1() {
-        return "ex02.Test09.m1";
+        return "ex02.Test09.m1()";
     }
     
     @RequestMapping("m2")
     @ResponseBody
     public String m2() {
-        return "ex02.Test09.m2";
+        return "ex02.Test09.m2()";
     }
+    
+    
 }
+
+
+
+
+
+
+
+
+

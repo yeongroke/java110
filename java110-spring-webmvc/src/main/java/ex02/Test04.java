@@ -8,24 +8,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class Test04 {
     
-    // 특정 이름만 갖는 파라미터를 포함하고 있을 때만 호출되도록 한다.
+    // 특정 이름을 갖는 파라미터를 포함하고 있을 때만 호출되도록 한다.
     // 테스트:
     // http://localhost:8888/app/ex02/test04?name=aaa
     // http://localhost:8888/app/ex02/test04?name=aaa&age=20
     // http://localhost:8888/app/ex02/test04?age=20
-    @RequestMapping(value="/ex02/test04",params="name")
+    @RequestMapping(value="/ex02/test04", 
+            params="name")
     @ResponseBody
     public String m1() {
         return "ex02.Test04.m1()";
     }
     
-    @RequestMapping(value="/ex02/test04",params= "age")
+    @RequestMapping(value="/ex02/test04", 
+            params="age")
     @ResponseBody
     public String m2() {
         return "ex02.Test04.m2()";
     }
     
-    @RequestMapping(value="/ex02/test04",params= {"age","name"})
+    @RequestMapping(value="/ex02/test04", 
+            params={"age","name"})
     @ResponseBody
     public String m3() {
         return "ex02.Test04.m3()";
@@ -36,6 +39,7 @@ public class Test04 {
     public String m4() {
         return "ex02.Test04.m4()";
     }
+    
 }
 
 

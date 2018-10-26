@@ -13,6 +13,5 @@
 model: ${car.model}<br>
 maker: ${car.maker}<br>
 auto: ${car.auto}<br>
-
 </body>
 </html>
