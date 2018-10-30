@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import bitcamp.java110.cms.dao.MemberDao;
 import bitcamp.java110.cms.dao.PhotoDao;
@@ -20,6 +21,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired TeacherDao teacherDao;
 
     @Override
+    @Transactional
     public void add(Teacher teacher) {
         memberDao.insert(teacher);
         teacherDao.insert(teacher);
@@ -49,6 +51,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
     
     @Override
+    @Transactional
     public void delete(int no) {
         if (teacherDao.delete(no) == 0) {
             throw new RuntimeException("해당 번호의 데이터가 없습니다.");

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import bitcamp.java110.cms.dao.ManagerDao;
 import bitcamp.java110.cms.dao.MemberDao;
@@ -19,6 +21,19 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired PhotoDao photoDao;
     @Autowired ManagerDao managerDao;
     
+    @Transactional(
+            // 관리자 이름이 transactionManager이라면
+            // 다음 속성은 생략해도 된다.
+            //transactionManager="transactionManager",
+            
+            // 트랜잭션을 쓰는 곳?에만 선언하면됨
+            // 이 메서드를 호출하는 쪽에 이미 트랜잭션이 있으면 그 트랜잭션에 소속되게 하고,
+            // 없으면 새 트랜잭션을 만들어 수행한다.
+            propagation=Propagation.REQUIRED,
+            // 메서드 실행 중에 Exception 예외가 발생하면 rollback을 수행한다.
+            // 기본값은 Exception.class 이다.
+            rollbackFor=Exception.class
+            )
     @Override
     public void add(Manager manager) {
         memberDao.insert(manager);
@@ -49,6 +64,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
     
     @Override
+    @Transactional
     public void delete(int no) {
         if (managerDao.delete(no) == 0) {
             throw new RuntimeException("해당 번호의 데이터가 없습니다.");
