@@ -38,7 +38,7 @@ public class AppConfig  {
     Environment env;
     
     public AppConfig() {
-        System.out.println("AppConfig() 호출됨!! ! !  !");
+        System.out.println("AppConfig() 호출됨!!  ! !  !");
     }
     
     @Bean(destroyMethod="close")
