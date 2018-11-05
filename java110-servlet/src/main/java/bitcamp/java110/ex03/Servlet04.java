@@ -41,41 +41,9 @@ public class Servlet04 extends GenericServlet {
             while ((b = in.read()) != -1) {
                 out.write(b);
             }
-            
             out.flush();
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
